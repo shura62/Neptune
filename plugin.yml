@@ -2,7 +2,7 @@
 name: Neptune
 description: Cheating-prevention plugin for PocketMine-MP 3.0.0
 author: shura62
-version: 0.6.4
+version: 0.6.5
 api: 3.0.0
 main: shura62\neptune\Neptune
 
