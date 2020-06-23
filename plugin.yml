@@ -1,0 +1,18 @@
+---
+name: Neptune
+description: Cheating-prevention plugin for PocketMine-MP 3.0.0
+author: shura62
+version: 0.6.4
+api: 3.0.0
+main: shura62\neptune\Neptune
+
+permissions:
+  neptune.*:
+    children:
+      neptune.alerts:
+        description: Receive an alert when a player fails a check
+        default: op
+      neptune.delay:
+        description: Set a delay for alerts
+        default: op
+...
