@@ -1,0 +1,167 @@
+---
+#
+#  ███╗   ██╗███████╗██████╗ ████████╗██╗   ██╗███╗   ██╗███████╗
+#  ████╗  ██║██╔════╝██╔══██╗╚══██╔══╝██║   ██║████╗  ██║██╔════╝
+#  ██╔██╗ ██║█████╗  ██████╔╝   ██║   ██║   ██║██╔██╗ ██║█████╗
+#  ██║╚██╗██║██╔══╝  ██╔═══╝    ██║   ██║   ██║██║╚██╗██║██╔══╝
+#  ██║ ╚████║███████╗██║        ██║   ╚██████╔╝██║ ╚████║███████╗
+#  ╚═╝  ╚═══╝╚══════╝╚═╝        ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+#                             V1.0
+
+# Language configuration
+lang:
+  prefix: '&8[&b&lNeptune&8] &r&7'
+  no-permission: '&cNo permission.'
+  base-message-color: '&b'
+  flag-format: '%prefix%&c%player% &7has failed &c%check% &8<&c%checktype%&8> &8[&7VL&8:&c %vl%&8]'
+  experimental-annotation: '&f*'
+  broadcast-message: '%newline%%prefix%%player% &7was banned for &fCheating&7.%newline% '
+
+# Checks configuration
+  # Exempted players will be ignored by the anticheat
+exempted-players: ["Verzide", "ZIBLACKINGGG"]
+
+checks:
+  punish-command: 'kick %player% %prefix%Cheating'
+  broadcast-punishments: true
+  detections:
+    speed:
+      consistency:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      friction:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      gcd:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      acceleration:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    fly:
+      height:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      ascension:
+        enabled: true
+        punishable: false
+        max-vl: 10
+      prediction:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      horizontal:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      jump:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    motion:
+      vertical:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      smallhop:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    fastladder:
+      velocity:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    noslow:
+      cobweb:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    invalid:
+      pitch:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    sprint:
+      omni:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    step:
+      vertical:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    invmove:
+      invalid:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    nofall:
+      groundspoof:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    spoof:
+      edition:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    timer:
+      consistency:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    angle:
+      nolook:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    aura:
+      multi:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      lockview:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    autoclicker:
+      consistency:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      delay:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    noswing:
+      packet:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    rotation:
+      invalid:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    velocity:
+      vertical:
+        enabled: true
+        punishable: true
+        max-vl: 10
+    range:
+      distance:
+        enabled: true
+        punishable: false
+        max-vl: 10
+      packet:
+        enabled: true
+        punishable: true
+        max-vl: 10
+...
