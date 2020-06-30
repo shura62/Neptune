@@ -42,6 +42,10 @@ checks:
         enabled: true
         punishable: true
         max-vl: 10
+      collisions:
+        enabled: true
+        punishable: true
+        max-vl: 10
     fly:
       height:
         enabled: true

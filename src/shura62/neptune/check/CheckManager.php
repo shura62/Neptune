@@ -27,6 +27,8 @@ use shura62\neptune\check\movement\noslow\NoSlowA;
 use shura62\neptune\check\movement\speed\SpeedA;
 use shura62\neptune\check\movement\speed\SpeedB;
 use shura62\neptune\check\movement\speed\SpeedC;
+use shura62\neptune\check\movement\speed\SpeedD;
+use shura62\neptune\check\movement\speed\SpeedE;
 use shura62\neptune\check\movement\sprint\SprintA;
 use shura62\neptune\check\movement\step\StepA;
 use shura62\neptune\check\player\spoof\SpoofA;
@@ -43,6 +45,8 @@ class CheckManager {
             new SpeedA(),
             new SpeedB(),
             new SpeedC(),
+            new SpeedD(),
+            new SpeedE(),
             new FlyA(),
             new FlyB(),
             new FlyC(),

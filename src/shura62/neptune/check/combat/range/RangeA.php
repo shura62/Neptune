@@ -53,7 +53,7 @@ class RangeA extends Check {
                         ? 6
                         : 3.01;
 
-                $user->getPlayer()->sendMessage("d: " . $dist . "; i: " . $inter);
+                //$user->getPlayer()->sendMessage("d: " . $dist . "; i: " . $inter);
 
                 if($inter >= $threshold && $dist > $threshold) {
                     $this->flag($user);
