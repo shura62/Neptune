@@ -10,7 +10,6 @@ use shura62\neptune\utils\packet\WrappedPacket;
 
 class WrappedInventoryTransactionPacket extends WrappedPacket {
 
-    public $block;
     public $entity;
 
     protected function process() : void{

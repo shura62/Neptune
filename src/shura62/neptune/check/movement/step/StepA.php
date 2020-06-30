@@ -13,24 +13,23 @@ class StepA extends Check {
 
     public function __construct() {
         parent::__construct("Step", "Vertical");
+        $this->dev = true;
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {
-        if (!$e->equals(Packets::MOVE))
+        if($e->equals(Packets::MOVE))
             return;
         $world = $user->position->level;
-        if ($world === null)
+        if($world === null)
             return;
-        $under = $world->getBlock($user->position->add(0, -($user->getPlayer()->getEyeHeight() + 0.5001)));
-        $deltaY = $user->lastVelocity->getY();
+        $under = $world->getBlock($user->position->add(0, -0.5001));
+        $deltaY = abs($user->velocity->getY());
 
         $box = $under->getBoundingBox();
-
         if($box !== null) {
-            $max = ($box->maxY - $box->minY) - 0.5001;
-            if ($user->collidedGround
-                    && $deltaY > $max) {
-                $this->flag($user);
+            if ($deltaY > $box->maxY) {
+                if(++$this->vl > 2)
+                    $this->flag($user, "deltaY= " . $deltaY . ", max= " . $max);
             }
         }
     }

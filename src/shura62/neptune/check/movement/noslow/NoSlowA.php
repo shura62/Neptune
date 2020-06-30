@@ -27,4 +27,6 @@ class NoSlowA extends Check {
         } else $this->vl = 0;
     }
 
+
+
 }

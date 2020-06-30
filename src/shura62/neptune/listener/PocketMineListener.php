@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace shura62\neptune\listener;
 
 use pocketmine\entity\Human;
-use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\Listener;
 use pocketmine\Player;
@@ -18,28 +17,12 @@ class PocketMineListener implements Listener {
         NeptunePlugin::getInstance()->getServer()->getPluginManager()->registerEvents($this, NeptunePlugin::getInstance());
     }
 
-    /**
-     * @priority HIGHEST
-     * @param EntityDamageByEntityEvent $event
-     */
     public function onEntityHit(EntityDamageByEntityEvent $event) : void{
         $entity = $event->getEntity();
-        if($entity instanceof Player && $event->getDamager() instanceof Human && !$event->isCancelled()) {
+        if($entity instanceof Player && $event->getDamager() instanceof Human) {
             $user = UserManager::get($entity);
             if($user !== null)
                 $user->lastKnockBack->reset();
-        }
-    }
-
-    /**
-     * @priority HIGHEST
-     * @param BlockPlaceEvent $event
-     */
-    public function onPlace(BlockPlaceEvent $event) : void{
-        if(!$event->isCancelled()) {
-            $user = UserManager::get($event->getPlayer());
-            if($user !== null)
-                $user->lastBlockPlace->reset();
         }
     }
 

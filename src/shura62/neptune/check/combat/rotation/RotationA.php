@@ -19,6 +19,7 @@ class RotationA extends Check {
 
     public function __construct() {
         parent::__construct("Rotation", "Invalid");
+        $this->dev = true;
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {

@@ -21,7 +21,7 @@ class User {
     public $clientGround, $collidedGround, $alerts, $inventoryOpen, $digging, $desktop;
     public $movementProcessor, $packetProcessor, $deviceProcessor;
     public $flagDelay, $airTicks, $groundTicks, $iceTicks, $slimeTicks, $liquidTicks, $climbableTicks, $cobwebTicks, $blocksAboveTicks;
-    public $lastTeleport, $lastKnockBack, $lastBlockPlace;
+    public $lastTeleport, $lastKnockBack;
     public $checks = [];
 
     public function __construct(Player $player) {
@@ -37,7 +37,6 @@ class User {
 
         $this->lastTeleport = new Timestamp();
         $this->lastKnockBack = new Timestamp();
-        $this->lastBlockPlace = new Timestamp();
     }
 
     public function getPlayer() : Player{

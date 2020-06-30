@@ -10,7 +10,6 @@ use shura62\neptune\check\combat\aura\AuraB;
 use shura62\neptune\check\combat\autoclicker\AutoclickerA;
 use shura62\neptune\check\combat\autoclicker\AutoclickerB;
 use shura62\neptune\check\combat\range\RangeA;
-use shura62\neptune\check\combat\range\RangeB;
 use shura62\neptune\check\combat\noswing\NoSwingA;
 use shura62\neptune\check\combat\rotation\RotationA;
 use shura62\neptune\check\combat\velocity\VelocityA;
@@ -20,17 +19,14 @@ use shura62\neptune\check\movement\fly\FlyB;
 use shura62\neptune\check\movement\fly\FlyC;
 use shura62\neptune\check\movement\fly\FlyD;
 use shura62\neptune\check\movement\fly\FlyE;
+use shura62\neptune\check\movement\hop\HopA;
+use shura62\neptune\check\movement\hop\HopB;
 use shura62\neptune\check\movement\invalid\InvalidA;
 use shura62\neptune\check\movement\motion\MotionA;
-use shura62\neptune\check\movement\motion\MotionB;
 use shura62\neptune\check\movement\noslow\NoSlowA;
-use shura62\neptune\check\movement\scaffold\ScaffoldA;
-use shura62\neptune\check\movement\scaffold\ScaffoldB;
 use shura62\neptune\check\movement\speed\SpeedA;
 use shura62\neptune\check\movement\speed\SpeedB;
 use shura62\neptune\check\movement\speed\SpeedC;
-use shura62\neptune\check\movement\speed\SpeedD;
-use shura62\neptune\check\movement\speed\SpeedE;
 use shura62\neptune\check\movement\sprint\SprintA;
 use shura62\neptune\check\movement\step\StepA;
 use shura62\neptune\check\player\spoof\SpoofA;
@@ -47,24 +43,21 @@ class CheckManager {
             new SpeedA(),
             new SpeedB(),
             new SpeedC(),
-            new SpeedD(),
-            new SpeedE(),
             new FlyA(),
             new FlyB(),
             new FlyC(),
             new FlyD(),
             new FlyE(),
+            new HopA(),
+            new HopB(),
             new InvalidA(),
             new FastLadderA(),
             new MotionA(),
-            new MotionB(),
             new NoSlowA(),
-            new ScaffoldA(),
-            new ScaffoldB(),
             new SprintA(),
             new StepA(),
-            new TimerA(),
             new InvMoveA(),
+            new TimerA(),
             new NoFallA(),
             new SpoofA(),
             new AngleA(),
@@ -76,7 +69,6 @@ class CheckManager {
             new RotationA(),
             new VelocityA(),
             new RangeA(),
-            new RangeB(),
         ];
     }
 

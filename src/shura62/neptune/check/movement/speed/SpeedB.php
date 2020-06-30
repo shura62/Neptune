@@ -14,7 +14,7 @@ use shura62\neptune\utils\PlayerUtils;
 class SpeedB extends Check {
 
     public function __construct() {
-        parent::__construct("Speed", "Friction");
+        parent::__construct("Speed", "BHop");
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {
