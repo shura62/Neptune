@@ -33,6 +33,7 @@ class FlyE extends Check {
                             && $user->liquidTicks <= 0
                             && $user->climbableTicks <= 0
                             && $user->lastKnockBack->hasPassed(20)
+                            && $user->lastBlockPlace->hasPassed(20)
                             && !$user->getPlayer()->getAllowFlight()) {
                         $this->flag($user, "lastWasNegative= " . ($negative ? "true" : "false"));
                         $this->ticks = 0;

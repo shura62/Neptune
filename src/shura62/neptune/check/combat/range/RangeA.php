@@ -43,7 +43,7 @@ class RangeA extends Check {
                     return;
                 $this->lastAttack = $now;
 
-                $dist = AABB::from($target)->collidesRay(Ray::from($user), 0, 10);
+                $dist = AABB::fromUser($target)->collidesRay(Ray::from($user), 0, 10);
                 $inter = $this->interaction;
 
                 if($dist == -1 || $dist >= 3.5 || $inter > 3.5)

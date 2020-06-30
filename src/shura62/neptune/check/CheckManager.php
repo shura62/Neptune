@@ -24,6 +24,8 @@ use shura62\neptune\check\movement\invalid\InvalidA;
 use shura62\neptune\check\movement\motion\MotionA;
 use shura62\neptune\check\movement\motion\MotionB;
 use shura62\neptune\check\movement\noslow\NoSlowA;
+use shura62\neptune\check\movement\scaffold\ScaffoldA;
+use shura62\neptune\check\movement\scaffold\ScaffoldB;
 use shura62\neptune\check\movement\speed\SpeedA;
 use shura62\neptune\check\movement\speed\SpeedB;
 use shura62\neptune\check\movement\speed\SpeedC;
@@ -57,6 +59,8 @@ class CheckManager {
             new MotionA(),
             new MotionB(),
             new NoSlowA(),
+            new ScaffoldA(),
+            new ScaffoldB(),
             new SprintA(),
             new StepA(),
             new TimerA(),

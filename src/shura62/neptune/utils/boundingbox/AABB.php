@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace shura62\neptune\utils\boundingbox;
 
+use pocketmine\block\Block;
 use pocketmine\math\Vector3;
 use shura62\neptune\user\User;
 
@@ -12,12 +13,23 @@ class AABB {
     private $minX, $minY, $minZ;
     private $maxX, $maxY, $maxZ;
 
-    public static function from(User $user) : AABB{
+    public static function fromUser(User $user) : AABB{
         $pos = $user->position;
         return new AABB(
             $pos->x - 0.3, $pos->y, $pos->z - 0.3,
             $pos->x + 0.3, $pos->y + 1.8, $pos->z + 0.3
         );
+    }
+    
+    public static function fromBlock(Block $block) : ?AABB{
+        $b = $block->getBoundingBox();
+        if($b !== null) {
+            return new AABB(
+                $b->minX, $b->minY, $b->minZ,
+                $b->maxX, $b->maxY, $b->maxZ
+            );
+        }
+        return null;
     }
 
     public function __construct(float $minX, float $minY, float $minZ, float $maxX, float $maxY, float $maxZ) {
@@ -27,6 +39,27 @@ class AABB {
         $this->maxX = $maxX;
         $this->maxY = $maxY;
         $this->maxZ = $maxZ;
+    }
+    
+    public function translate(float $x, float $y, float $z) : AABB{
+        return new AABB(
+            $this->minX + $x, $this->minY + $y, $this->minZ + $z,
+            $this->maxX + $x, $this->maxY, $this->maxZ
+        );
+    }
+
+    public function grow(float $x, float $y, float $z) : AABB{
+        return new AABB(
+            $this->minX - $x, $this->minY - $y, $this->minZ - $z,
+            $this->maxX + $x, $this->maxY, $this->maxZ
+        );
+    }
+
+    public function stretch(float $x, float $y, float $z) : AABB{
+        return new AABB(
+            $this->minX, $this->minY, $this->minZ,
+            $this->maxX + $x, $this->maxY, $this->maxZ
+        );
     }
 
     public function contains(Vector3 $pos) : bool{
