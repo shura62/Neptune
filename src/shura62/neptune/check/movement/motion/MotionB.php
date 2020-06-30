@@ -18,13 +18,11 @@ class MotionB extends Check {
     public function onPacket(PacketReceiveEvent $e, User $user) {
         if(!$e->equals(Packets::MOVE))
             return;
-        $motion = $user->velocity->getY();
+        $motion = round($user->velocity->getY(), 5);
+        $lastMotion = round($user->lastVelocity->getY(), 5);
 
-        if($motion < 0.04
-            && $motion == -$user->lastVelocity->getY()
-            && $motion !== 0) {
-            if(++$this->vl > 4)
-                $this->flag($user, "motionY= " . $motion);
+        if($motion >= 0.035 && $motion < 0.04 && ($motion == -$lastMotion || $lastMotion == -$motion)) {
+            $this->flag($user, "motionY= " . $motion);
         } else $this->vl = 0;
     }
 

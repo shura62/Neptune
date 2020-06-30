@@ -69,7 +69,7 @@ class ScaffoldA extends Check implements Listener {
 
             if($collision >= 2.5 || $outside) {
                 if(++$this->vl > 1)
-                    $this->flag($user);
+                    $this->flag($user, "collided: " . $collision);
             } else $this->vl = 0;
         }
     }

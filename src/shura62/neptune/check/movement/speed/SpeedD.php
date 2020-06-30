@@ -27,7 +27,8 @@ class SpeedD extends Check {
         $lastAccel = $this->lastAccel;
         $this->lastAccel = $accel;
 
-        if(($accel > 0.29 && $lastAccel <= 0) || ($accel <= 0 && $lastAccel > 0.29)) {
+        if(($accel > 0.29 && $lastAccel <= 0) || ($accel <= 0 && $lastAccel > 0.29)
+                && $user->lastTeleport->hasPassed(20)) {
             if(++$this->vl > 2)
                 $this->flag($user, "accel= " . $accel . ", lastAccel= " . $lastAccel);
         }
