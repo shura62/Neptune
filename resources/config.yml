@@ -173,9 +173,13 @@ checks:
         punishable: true
         max-vl: 10
     range:
-      distance:
+      packet:
         enabled: true
         punishable: false
+        max-vl: 10
+      distance:
+        enabled: true
+        punishable: true
         max-vl: 10
       packet:
         enabled: true

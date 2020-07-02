@@ -5,33 +5,83 @@ declare(strict_types=1);
 namespace shura62\neptune\check\combat\range;
 
 use pocketmine\entity\Entity;
+use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerMoveEvent;
+use pocketmine\Player;
 use shura62\neptune\check\Check;
 use shura62\neptune\check\CheckType;
 use shura62\neptune\event\PacketReceiveEvent;
+use shura62\neptune\NeptunePlugin;
 use shura62\neptune\user\User;
+use shura62\neptune\user\UserManager;
+use shura62\neptune\utils\boundingbox\AABB;
+use shura62\neptune\utils\boundingbox\Ray;
 use shura62\neptune\utils\packet\Packets;
 use shura62\neptune\utils\packet\types\WrappedInteractPacket;
+use shura62\neptune\utils\packet\types\WrappedInventoryTransactionPacket;
 
-class RangeB extends Check {
+class RangeB extends Check implements Listener {
+
+    private $boxes = [];
+    private $lastTarget, $lastAttack;
 
     public function __construct() {
-        parent::__construct("Range", "Packet", CheckType::COMBAT);
+        parent::__construct("Range", "Distance", CheckType::COMBAT);
+        NeptunePlugin::getInstance()->getServer()->getPluginManager()->registerEvents($this, NeptunePlugin::getInstance());
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {
-        /*if (!$e->equals(Packets::INTERACT))
-            return;
-        $pk = new WrappedInteractPacket($e->getPacket());
-        $target = $pk->target;
+        if ($e->equals(Packets::INVENTORY_TRANSACTION)) {
+            $pk = new WrappedInventoryTransactionPacket($e->getPacket());
+            $entity = $pk->entity;
 
-        if($target !== null) {
-            $dist = $user->position->subtract(0, $user->position->y)->distance($pk->pos->subtract(0, $pk->pos->y)) - 0.3;
-            $threshold = $user->getPlayer()->isCreative() ? 6 : 3;
+            if ($entity instanceof Player && $user->desktop) {
+                $target = UserManager::get($entity);
+                if($target === null)
+                    return;
+                $this->lastTarget = $target;
 
-            if($dist >= $threshold) {
-                $this->flag($user, "distance= " . $dist);
+                $hit = $this->lastAttack;
+                $now = microtime(true);
+
+                if($now - $hit < 0.15)
+                    return;
+                $this->lastAttack = $now;
+
+                $ray = Ray::from($user);
+                if(count($this->boxes) >= 20) {
+                    $collisions = [];
+                    foreach($this->boxes as $box) {
+                        $collision = $box->collidesRay($ray, 0, 8);
+                        if($collision >= 0)
+                            $collisions[] = $collision;
+                    }
+
+                    if(count($collisions) < 1)
+                        return;
+
+                    $dist = min($collisions);
+                    $max = $user->getPlayer()->isCreative() ? 6 : 3.2;
+
+                    if($dist > $max) {
+                        if(++$this->vl > 1)
+                            $this->flag($user, "dist= " . $dist);
+                    } else $this->vl-= $this->vl > 0 ? 1 : 0;
+                }
             }
-        }*/
+        }
+    }
+
+    public function onMove(PlayerMoveEvent $event) : void{
+        $player = $event->getPlayer();
+        $user = UserManager::get($player);
+
+        if($user === $this->lastTarget && $user !== null) {
+            if(count($this->boxes) == 20) {
+                array_shift($this->boxes);
+            }
+            $this->boxes[] = AABB::fromUser($user);
+        }
     }
 
 }

@@ -48,6 +48,7 @@ class RotationA extends Check {
                 } else $this->vl = 0;
 
                 $this->diffs = [];
+                $this->average = 100;
             }
             $this->lastDelta = $delta;
         }

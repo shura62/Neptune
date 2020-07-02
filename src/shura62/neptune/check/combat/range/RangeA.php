@@ -24,8 +24,7 @@ class RangeA extends Check {
     private $interaction, $tick;
 
     public function __construct() {
-        parent::__construct("Range", "Distance", CheckType::COMBAT);
-        $this->dev = true;
+        parent::__construct("Range", "Packet", CheckType::COMBAT);
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {
@@ -52,13 +51,12 @@ class RangeA extends Check {
 
                 $threshold = $user->getPlayer()->isCreative()
                         ? 6
-                        : 3.1;
-
-                //$user->getPlayer()->sendMessage("d: " . $dist . "; i: " . $inter);
+                        : 3.3;
 
                 if($inter >= $threshold && $dist > $threshold) {
-                    $this->flag($user);
-                }
+                    if(++$this->vl > 2)
+                        $this->flag($user);
+                } else $this->vl-= $this->vl > 0 ? 1 : 0;
             }
         } elseif($e->equals(Packets::INTERACT)) {
             $pk = new WrappedInteractPacket($e->getPacket());
