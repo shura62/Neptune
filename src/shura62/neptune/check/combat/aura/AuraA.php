@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace shura62\neptune\check\combat\aura;
 
 use shura62\neptune\check\Check;
+use shura62\neptune\check\CheckType;
 use shura62\neptune\event\PacketReceiveEvent;
 use shura62\neptune\user\User;
 use shura62\neptune\utils\packet\Packets;
@@ -16,7 +17,7 @@ class AuraA extends Check {
     private $lastHit;
 
     public function __construct() {
-        parent::__construct("Aura", "Multi");
+        parent::__construct("Aura", "Multi", CheckType::COMBAT);
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {

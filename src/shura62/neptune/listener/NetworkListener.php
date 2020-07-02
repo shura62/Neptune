@@ -23,16 +23,19 @@ class NetworkListener implements Listener {
         if(!($packet instanceof BatchPacket)) {
             $user = UserManager::get($player);
             if($user !== null) {
-                $user->movementProcessor->process($packet, $user);
-                $user->packetProcessor->process($packet, $user);
+                $user->movementProcessor->process($packet);
+                $user->packetProcessor->process($packet);
 
                 $exempted = NeptunePlugin::getInstance()->getConfig()->getNested("exempted-players");
 
-                if($user->position !== null && !in_array($user->getPlayer()->getName(), $exempted))
+                if($user->position !== null
+                        && !in_array($user->getPlayer()->getName(), $exempted)
+                        && $user->lastTeleport->hasPassed(100)) {
                     foreach($user->checks->get() as $check) {
-                        if($check->isEnabled()) {
+                        if($check->isEnabled())
                             $check->onPacket(new PacketReceiveEvent($player, $packet), $user);
                     }
+                    $user->movementProcessor->postProcess($packet);
                 }
             }
         }

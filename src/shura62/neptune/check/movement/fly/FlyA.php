@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace shura62\neptune\check\movement\fly;
 
+use shura62\neptune\check\Cancellable;
 use shura62\neptune\check\Check;
+use shura62\neptune\check\CheckType;
 use shura62\neptune\event\PacketReceiveEvent;
 use shura62\neptune\user\User;
 use shura62\neptune\utils\packet\Packets;
 
-class FlyA extends Check {
+class FlyA extends Check implements Cancellable {
 
     private $lastGround;
 
     public function __construct() {
-        parent::__construct("Fly", "Height");
+        parent::__construct("Fly", "Height", CheckType::MOVEMENT);
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {
@@ -23,14 +25,17 @@ class FlyA extends Check {
         if ($user->collidedGround) {
             $this->lastGround = $user->position->getY();
         } else {
-            if ($user->getPlayer()->getAllowFlight() || $user->liquidTicks > 0 || $user->climbableTicks > 0) {
+            if ($user->getPlayer()->getAllowFlight() || $user->liquidTicks > 0 || $user->climbableTicks > 0 ) {
                 $this->vl = 0;
                 return;
             }
 
             $dist = $user->position->getY() - $this->lastGround;
 
-            if ($dist >= 1.13 && $user->position->getY() >= $user->lastPosition->getY() && $user->lastKnockBack->hasPassed(20)) {
+            if ($dist >= 1.13
+                    && $user->position->getY() >= $user->lastPosition->getY()
+                    && $user->lastKnockBack->hasPassed(20)
+                    && $user->lastBlockPlace->hasPassed(20)) {
                 if (++$this->vl > 9)
                     $this->flag($user, "curY= " . $user->position->getY() . ", lastGround= " . $this->lastGround);
             } else $this->vl = 0;

@@ -16,20 +16,20 @@ class User {
     private $player;
 
     public $boundingBox;
-    public $position, $lastPosition;
+    public $position, $lastPosition, $lastGroundPosition;
     public $velocity, $lastVelocity;
-    public $clientGround, $collidedGround, $alerts, $inventoryOpen, $digging, $desktop;
+    public $clientGround, $collidedGround, $alerts, $inventoryOpen, $digging, $desktop, $sprinting;
     public $movementProcessor, $packetProcessor, $deviceProcessor;
-    public $flagDelay, $airTicks, $groundTicks, $iceTicks, $slimeTicks, $liquidTicks, $climbableTicks, $cobwebTicks, $blocksAboveTicks;
-    public $lastTeleport, $lastKnockBack, $lastBlockPlace;
+    public $flagDelay, $airTicks, $groundTicks, $iceTicks, $slimeTicks, $liquidTicks, $climbableTicks, $cobwebTicks, $blocksAboveTicks, $sprintingTicks;
+    public $lastTeleport, $lastKnockBack, $lastBlockPlace, $lastMoveFlag;
     public $checks = [];
 
     public function __construct(Player $player) {
         $this->player = $player;
 
-        $this->movementProcessor = new MovementProcessor();
-        $this->packetProcessor = new PacketProcessor();
-        $this->deviceProcessor = new DeviceProcessor();
+        $this->movementProcessor = new MovementProcessor($this);
+        $this->packetProcessor = new PacketProcessor($this);
+        $this->deviceProcessor = new DeviceProcessor($this);
 
         $this->flagDelay = 1;
 

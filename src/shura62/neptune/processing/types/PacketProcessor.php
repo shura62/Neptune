@@ -13,7 +13,14 @@ use shura62\neptune\user\User;
 
 class PacketProcessor extends Processor {
 
-    public function process(DataPacket $packet, User $user) : void{
+    private $user;
+
+    public function __construct(User $user) {
+        $this->user = $user;
+    }
+
+    public function process(DataPacket $packet) : void{
+        $user = $this->user;
         switch($packet->pid()) {
             case ProtocolInfo::INTERACT_PACKET:
                 if($packet->action === InteractPacket::ACTION_OPEN_INVENTORY)
@@ -23,12 +30,22 @@ class PacketProcessor extends Processor {
                 $user->inventoryOpen = false;
                 break;
             case ProtocolInfo::PLAYER_ACTION_PACKET:
-                if($packet->action === PlayerActionPacket::ACTION_ABORT_BREAK
-                        || $packet->action === PlayerActionPacket::ACTION_STOP_BREAK)
-                    $user->digging = false;
-                if($packet->action === PlayerActionPacket::ACTION_START_BREAK
-                    || $packet->action === PlayerActionPacket::ACTION_CONTINUE_BREAK)
-                    $user->digging = true;
+                switch($packet->action) {
+                    case PlayerActionPacket::ACTION_ABORT_BREAK:
+                    case PlayerActionPacket::ACTION_STOP_BREAK:
+                        $user->digging = false;
+                        break;
+                    case PlayerActionPacket::ACTION_START_BREAK:
+                    case PlayerActionPacket::ACTION_CONTINUE_BREAK:
+                        $user->digging = true;
+                        break;
+                    case PlayerActionPacket::ACTION_START_SPRINT:
+                        $user->sprinting = true;
+                        break;
+                    case PlayerActionPacket::ACTION_STOP_SPRINT:
+                        $user->sprinting = false;
+                        break;
+                }
                 break;
         }
     }

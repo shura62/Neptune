@@ -16,9 +16,16 @@ use shura62\neptune\utils\boundingbox\BoundingBox;
 
 class MovementProcessor extends Processor {
 
-    public function process(DataPacket $packet, User $user) : void{
+    private $user;
+
+    public function __construct(User $user) {
+        $this->user = $user;
+    }
+
+    public function process(DataPacket $packet) : void{
         if(!($packet instanceof MovePlayerPacket))
             return;
+        $user = $this->user;
         $client = $packet->position;
 
         if($user->position !== null) {
@@ -47,6 +54,10 @@ class MovementProcessor extends Processor {
                 $user->groundTicks = 0;
             }
 
+            if($user->sprinting) {
+                ++$user->sprintingTicks;
+            } else $user->sprintingTicks = 0;
+
             $around = $user->getPlayer()->getBlocksAround();
             // Climbable blocks
             $user->climbableTicks += count(array_filter($around, function (Block $b) : bool{
@@ -67,6 +78,16 @@ class MovementProcessor extends Processor {
         } else {
             $user->lastPosition = $user->position = new Location($client->x, $client->y, $client->y, $packet->yaw, $packet->pitch);;
             $user->lastVelocity = $user->velocity = new Vector3();
+        }
+    }
+
+    public function postProcess(DataPacket $pk) : void{
+        if(!($pk instanceof MovePlayerPacket))
+            return;
+        $user = $this->user;
+        if($user->lastMoveFlag !== null && $user->lastMoveFlag->getPassed() !== 0) {
+            if($user->clientGround)
+                $user->lastGroundPosition = $user->position->subtract(0, $user->getPlayer()->getEyeHeight());
         }
     }
 

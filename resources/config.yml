@@ -86,6 +86,10 @@ checks:
         enabled: true
         punishable: true
         max-vl: 10
+      bow:
+        enabled: true
+        punishable: true
+        max-vl: 10
     scaffold:
       delay:
         enabled: true
@@ -161,7 +165,7 @@ checks:
     rotation:
       invalid:
         enabled: true
-        punishable: true
+        punishable: false
         max-vl: 10
     velocity:
       vertical:

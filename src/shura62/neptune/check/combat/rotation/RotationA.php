@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace shura62\neptune\check\combat\rotation;
 
 use shura62\neptune\check\Check;
+use shura62\neptune\check\CheckType;
 use shura62\neptune\event\PacketReceiveEvent;
 use shura62\neptune\user\User;
 use shura62\neptune\utils\MathUtils;
@@ -18,7 +19,8 @@ class RotationA extends Check {
     private $lastDelta;
 
     public function __construct() {
-        parent::__construct("Rotation", "Invalid");
+        parent::__construct("Rotation", "Invalid", CheckType::COMBAT);
+        $this->dev = true;
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {

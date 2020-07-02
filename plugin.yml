@@ -1,6 +1,6 @@
 ---
 name: Neptune
-version: 0.7.0
+version: 0.7.1
 authors: [shura62, senpayeh]
 api: 3.0.0
 description: Cheat prevention plugin for PocketMine 3.0.0

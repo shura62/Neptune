@@ -7,6 +7,7 @@ namespace shura62\neptune\check\combat\velocity;
 use pocketmine\event\entity\EntityMotionEvent;
 use pocketmine\event\Listener;
 use shura62\neptune\check\Check;
+use shura62\neptune\check\CheckType;
 use shura62\neptune\event\PacketReceiveEvent;
 use shura62\neptune\NeptunePlugin;
 use shura62\neptune\user\User;
@@ -19,7 +20,7 @@ class VelocityA extends Check implements Listener {
     private $velY, $lastVelocity;
 
     public function __construct() {
-        parent::__construct("Velocity", "Vertical");
+        parent::__construct("Velocity", "Vertical", CheckType::COMBAT);
         //NeptunePlugin::getInstance()->getServer()->getPluginManager()->registerEvents($this, NeptunePlugin::getInstance());
     }
 

@@ -8,6 +8,7 @@ use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\Listener;
 use pocketmine\network\mcpe\protocol\InventoryTransactionPacket;
 use shura62\neptune\check\Check;
+use shura62\neptune\check\CheckType;
 use shura62\neptune\event\PacketReceiveEvent;
 use shura62\neptune\NeptunePlugin;
 use shura62\neptune\user\User;
@@ -22,7 +23,7 @@ class ScaffoldA extends Check implements Listener {
     private $user;
 
     public function __construct() {
-        parent::__construct("Scaffold", "Angle");
+        parent::__construct("Scaffold", "Angle", CheckType::MOVEMENT);
         NeptunePlugin::getInstance()->getServer()->getPluginManager()->registerEvents($this, NeptunePlugin::getInstance());
         $this->dev = true;
     }
@@ -44,7 +45,7 @@ class ScaffoldA extends Check implements Listener {
         if($event->isCancelled())
             return;
         $user = UserManager::get($event->getPlayer());
-        if($user === null || $user !== $this->user)
+        if($user === null || $user !== $this->user || $user->desktop)
             return;
 
         $pos = $this->position;
@@ -68,7 +69,7 @@ class ScaffoldA extends Check implements Listener {
                 && $user->getPlayer()->getDirection() !== 1;
 
             if($collision >= 2.5 || $outside) {
-                if(++$this->vl > 1)
+                if(++$this->vl > 2)
                     $this->flag($user, "collided: " . $collision);
             } else $this->vl = 0;
         }

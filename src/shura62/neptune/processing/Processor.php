@@ -9,6 +9,6 @@ use shura62\neptune\user\User;
 
 abstract class Processor {
 
-    public abstract function process(DataPacket $packet, User $user) : void;
+    public abstract function process(DataPacket $packet) : void;
 
 }

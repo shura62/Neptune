@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace shura62\neptune\check\movement\noslow;
 
+use shura62\neptune\check\Cancellable;
 use shura62\neptune\check\Check;
+use shura62\neptune\check\CheckType;
 use shura62\neptune\event\PacketReceiveEvent;
 use shura62\neptune\user\User;
 use shura62\neptune\utils\packet\Packets;
 
-class NoSlowA extends Check {
+class NoSlowA extends Check implements Cancellable {
 
     public function __construct() {
-        parent::__construct("NoSlow", "Cobweb");
+        parent::__construct("NoSlow", "Cobweb", CheckType::MOVEMENT);
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {

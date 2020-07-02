@@ -13,9 +13,16 @@ use shura62\neptune\user\User;
 
 class DeviceProcessor extends Processor {
 
-    public function process(DataPacket $packet, User $user) : void{
+    private $user;
+
+    public function __construct(User $user) {
+        $this->user = $user;
+    }
+
+    public function process(DataPacket $packet) : void{
         if(!($packet instanceof LoginPacket))
             return;
+        $user = $this->user;
         try {
             $data = $packet->chainData;
             $part = explode(".", $data['chain'][2]);

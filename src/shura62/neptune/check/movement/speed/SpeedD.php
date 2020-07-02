@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace shura62\neptune\check\movement\speed;
 
+use shura62\neptune\check\Cancellable;
 use shura62\neptune\check\Check;
+use shura62\neptune\check\CheckType;
 use shura62\neptune\event\PacketReceiveEvent;
 use shura62\neptune\user\User;
 use shura62\neptune\utils\packet\Packets;
 
-class SpeedD extends Check {
+class SpeedD extends Check implements Cancellable {
 
     private $lastAccel;
 
     public function __construct() {
-        parent::__construct("Speed", "Acceleration");
+        parent::__construct("Speed", "Acceleration", CheckType::MOVEMENT);
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {
@@ -28,7 +30,8 @@ class SpeedD extends Check {
         $this->lastAccel = $accel;
 
         if(($accel > 0.29 && $lastAccel <= 0) || ($accel <= 0 && $lastAccel > 0.29)
-                && $user->lastTeleport->hasPassed(20)) {
+                && ($user->lastMoveFlag === null || $user->lastMoveFlag->hasPassed(1))
+                && !$user->getPlayer()->getAllowFlight()) {
             if(++$this->vl > 2)
                 $this->flag($user, "accel= " . $accel . ", lastAccel= " . $lastAccel);
         }

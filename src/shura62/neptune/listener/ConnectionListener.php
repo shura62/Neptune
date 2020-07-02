@@ -25,7 +25,7 @@ class ConnectionListener implements Listener {
             $user = new User($event->getPlayer());
             UserManager::register($user);
 
-            $user->deviceProcessor->process($packet, $user);
+            $user->deviceProcessor->process($packet);
         }
     }
 

@@ -6,6 +6,7 @@ namespace shura62\neptune\check\combat\range;
 
 use pocketmine\Player;
 use shura62\neptune\check\Check;
+use shura62\neptune\check\CheckType;
 use shura62\neptune\event\PacketReceiveEvent;
 use shura62\neptune\user\User;
 use shura62\neptune\user\UserManager;
@@ -23,7 +24,7 @@ class RangeA extends Check {
     private $interaction, $tick;
 
     public function __construct() {
-        parent::__construct("Range", "Distance");
+        parent::__construct("Range", "Distance", CheckType::COMBAT);
         $this->dev = true;
     }
 
@@ -51,7 +52,7 @@ class RangeA extends Check {
 
                 $threshold = $user->getPlayer()->isCreative()
                         ? 6
-                        : 3.01;
+                        : 3.1;
 
                 //$user->getPlayer()->sendMessage("d: " . $dist . "; i: " . $inter);
 

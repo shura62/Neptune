@@ -11,17 +11,19 @@ use shura62\neptune\NeptunePlugin;
 use shura62\neptune\user\User;
 use shura62\neptune\user\UserManager;
 use shura62\neptune\utils\ChatUtils;
+use shura62\neptune\utils\Timestamp;
 
 abstract class Check {
 
     private $name, $type;
     private $violations;
     protected $enabled, $punishable, $dev;
-    protected $vl = 0, $maxViolations;
+    protected $vl = 0, $maxViolations, $category;
 
-    public function __construct(string $name, string $type) {
+    public function __construct(string $name, string $type, int $category) {
         $this->name = $name;
         $this->type = $type;
+        $this->category = $category;
 
         $this->enabled = NeptunePlugin::getInstance()->getConfig()->getNested('checks.detections.' . strtolower($this->getName()) . "." . strtolower($this->getType()) . ".enabled");
         $this->punishable = NeptunePlugin::getInstance()->getConfig()->getNested('checks.detections.' . strtolower($this->getName()) . "." . strtolower($this->getType()) . ".punishable");
@@ -33,6 +35,16 @@ abstract class Check {
 
         $message = ChatUtils::color(str_replace("%prefix%", NeptunePlugin::getInstance()->getPrefix(), str_replace("%player%", $user->getPlayer()->getName(), str_replace("%check%", $this->getName(), str_replace("%checktype%", $this->getType(), str_replace("%vl%", count($this->violations), str_replace("%info%", $information, NeptunePlugin::getInstance()->getConfig()->getNested('lang.flag-format'))))))) . ($this->dev ? NeptunePlugin::getInstance()->getConfig()->getNested('lang.experimental-annotation') : ""));
         ChatUtils::informStaff($message, count($this->violations));
+
+        if($this instanceof Cancellable) {
+            switch ($this->getCategory()) {
+                case CheckType::MOVEMENT:
+                    if ($user->lastMoveFlag === null) {
+                        $user->lastMoveFlag = new Timestamp();
+                    } else $user->lastMoveFlag->reset();
+                    break;
+            }
+        }
 
         if (count($this->violations) >= $this->maxViolations) {
             if ($this->punishable) {
@@ -58,6 +70,10 @@ abstract class Check {
 
     public function getType() : string{
         return $this->type;
+    }
+
+    public function getCategory() : int{
+        return $this->category;
     }
 
     public function isEnabled() : bool{
