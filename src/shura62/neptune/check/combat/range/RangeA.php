@@ -24,7 +24,7 @@ class RangeA extends Check {
     private $interaction, $tick;
 
     public function __construct() {
-        parent::__construct("Range", "Packet", CheckType::COMBAT);
+        parent::__construct("Range", "Distance", CheckType::COMBAT);
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {
@@ -39,7 +39,7 @@ class RangeA extends Check {
                 $hit = $this->lastAttack;
                 $now = microtime(true);
 
-                if($now - $hit < 0.05)
+                if($now - $hit < 0.2)
                     return;
                 $this->lastAttack = $now;
 

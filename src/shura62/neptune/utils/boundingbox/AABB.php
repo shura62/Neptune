@@ -82,7 +82,7 @@ class AABB {
     // Credits to Technio
     public function collidesRay(Ray $ray, float $tmin, float $tmax) : float{
         for($i = 0; $i < 3; ++$i) {
-            $d = 1 / $ray->direction($i);
+            $d = 1 / ($ray->direction($i) ?: 0.01);
             $t0 = ($this->min($i) - $ray->origin($i)) * $d;
             $t1 = ($this->max($i) - $ray->origin($i)) * $d;
             if($d < 0) {

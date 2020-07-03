@@ -26,7 +26,7 @@ class RangeB extends Check implements Listener {
     private $lastTarget, $lastAttack;
 
     public function __construct() {
-        parent::__construct("Range", "Distance", CheckType::COMBAT);
+        parent::__construct("Range", "Hitbox", CheckType::COMBAT);
         NeptunePlugin::getInstance()->getServer()->getPluginManager()->registerEvents($this, NeptunePlugin::getInstance());
     }
 
@@ -44,29 +44,30 @@ class RangeB extends Check implements Listener {
                 $hit = $this->lastAttack;
                 $now = microtime(true);
 
-                if($now - $hit < 0.15)
+                if($now - $hit < 0.2)
                     return;
                 $this->lastAttack = $now;
 
                 $ray = Ray::from($user);
-                if(count($this->boxes) >= 20) {
+                if(count($this->boxes) == 10) {
                     $collisions = [];
                     foreach($this->boxes as $box) {
                         $collision = $box->collidesRay($ray, 0, 8);
-                        if($collision >= 0)
+                        if($collision != -1)
                             $collisions[] = $collision;
                     }
 
-                    if(count($collisions) < 1)
+                    if(count($collisions) == 0) {
+                        // Hitbox?
                         return;
-
+                    }
                     $dist = min($collisions);
                     $max = $user->getPlayer()->isCreative() ? 6 : 3.2;
 
                     if($dist > $max) {
                         if(++$this->vl > 1)
                             $this->flag($user, "dist= " . $dist);
-                    } else $this->vl-= $this->vl > 0 ? 1 : 0;
+                    } else $this->vl-= $this->vl > 0 ? 1 : 0 ;
                 }
             }
         }
@@ -77,7 +78,7 @@ class RangeB extends Check implements Listener {
         $user = UserManager::get($player);
 
         if($user === $this->lastTarget && $user !== null) {
-            if(count($this->boxes) == 20) {
+            if(count($this->boxes) == 10) {
                 array_shift($this->boxes);
             }
             $this->boxes[] = AABB::fromUser($user);

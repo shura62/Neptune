@@ -32,7 +32,7 @@ class NoSwingA extends Check {
             if(($this->lastSwing === null || $this->lastSwing->hasPassed(10))
                         && (new WrappedInventoryTransactionPacket($e->getPacket()))->entity !== null) {
                 if(++$this->vl > 2)
-                    $this->flag($user, "ticks= " . ($this->lastSwing->getPassed()));
+                    $this->flag($user, "ticks= " . ($this->lastSwing !== null ? $this->lastSwing->getPassed() : 0));
             } else $this->vl = 0;
         }
     }

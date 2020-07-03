@@ -22,11 +22,11 @@ class Ray {
     }
 
     public function origin(int $i) : float{
-        return [$this->origin->getX(), $this->origin->getY(), $this->origin->getZ()][$i] ?? 0;
+        return [$this->origin->getX(), $this->origin->getY(), $this->origin->getZ()][$i] ?? 0.001;
     }
 
     public function direction(int $i) : float{
-        return [$this->direction->getX(), $this->direction->getY(), $this->direction->getZ()][$i] ?? 0;
+        return [$this->direction->getX(), $this->direction->getY(), $this->direction->getZ()][$i] ?? 0.001;
     }
 
     public function getOrigin() : Vector3{

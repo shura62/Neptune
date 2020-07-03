@@ -173,15 +173,11 @@ checks:
         punishable: true
         max-vl: 10
     range:
-      packet:
+      distance:
         enabled: true
         punishable: false
         max-vl: 10
-      distance:
-        enabled: true
-        punishable: true
-        max-vl: 10
-      packet:
+      hitbox:
         enabled: true
         punishable: true
         max-vl: 10

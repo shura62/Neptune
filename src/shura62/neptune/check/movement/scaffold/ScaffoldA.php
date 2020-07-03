@@ -45,7 +45,7 @@ class ScaffoldA extends Check implements Listener {
         if($event->isCancelled())
             return;
         $user = UserManager::get($event->getPlayer());
-        if($user === null || $user !== $this->user || $user->desktop)
+        if($user === null || $user !== $this->user || !$user->desktop)
             return;
 
         $pos = $this->position;
