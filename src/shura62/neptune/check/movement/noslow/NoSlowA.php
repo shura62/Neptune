@@ -23,7 +23,7 @@ class NoSlowA extends Check implements Cancellable {
         $dist = hypot($user->velocity->getX(), $user->velocity->getZ());
         $max = $user->getPlayer()->isSprinting() ? 0.032 : 0.025;
 
-        if ($dist > $max && $user->cobwebTicks > 2 && $user->lastKnockBack->hasPassed(20)) {
+        if ($dist > $max && $user->cobwebTicks > 2 && $user->lastKnockBack->hasPassed(20) && !$user->getPlayer()->getAllowFlight()) {
             if (++$this->vl > 3)
                 $this->flag($user, "dist= " . $dist);
         } else $this->vl = 0;

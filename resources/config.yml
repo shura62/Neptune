@@ -173,10 +173,6 @@ checks:
         punishable: true
         max-vl: 10
     range:
-      distance:
-        enabled: true
-        punishable: false
-        max-vl: 10
       hitbox:
         enabled: true
         punishable: true

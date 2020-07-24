@@ -33,7 +33,8 @@ class StepA extends Check {
                     && $max > 0
                     && $deltaY > $max
                     && $user->lastKnockBack->hasPassed(20)
-                    && ($user->lastMoveFlag === null || $user->lastMoveFlag->hasPassed(20))) {
+                    && ($user->lastMoveFlag === null || $user->lastMoveFlag->hasPassed(20))
+                    && !$user->getPlayer()->getAllowFlight()) {
                 $this->flag($user);
             }
         }

@@ -10,7 +10,6 @@ use shura62\neptune\check\combat\aura\AuraB;
 use shura62\neptune\check\combat\autoclicker\AutoclickerA;
 use shura62\neptune\check\combat\autoclicker\AutoclickerB;
 use shura62\neptune\check\combat\range\RangeA;
-use shura62\neptune\check\combat\range\RangeB;
 use shura62\neptune\check\combat\noswing\NoSwingA;
 use shura62\neptune\check\combat\rotation\RotationA;
 use shura62\neptune\check\combat\velocity\VelocityA;
@@ -49,7 +48,6 @@ class CheckManager {
             new SpeedB(),
             new SpeedC(),
             new SpeedD(),
-            new SpeedE(),
             new FlyA(),
             new FlyB(),
             new FlyC(),
@@ -78,7 +76,6 @@ class CheckManager {
             new RotationA(),
             new VelocityA(),
             new RangeA(),
-            new RangeB(),
         ];
     }
 
