@@ -36,7 +36,7 @@ class NoFallA extends Check {
                 && $user->cobwebTicks <= 0
                 && $user->lastBlockPlace->hasPassed(20)
                 && ($user->lastMoveFlag === null || $user->lastMoveFlag->hasPassed(20))
-                && !$e->getPlayer()->isSpectator()) {
+                && !$e->getPlayer()->getAllowFlight()) {
             if(++$this->vl > 8)
                 $this->flag($user, "client= " . ($client ? "true" : "false") . ", server= " . ($server ? "true" : "false"));
         } else $this->vl = 0;
