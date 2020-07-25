@@ -23,10 +23,8 @@ class SpoofA extends Check {
         if($e->equals(Packets::LOGIN)) {
             $data = $e->getPacket()->clientData;
             $os = $data['DeviceOS'] ?? DeviceOS::UNKNOWN;
-
+            
             $desktop = !in_array((int) $os, [DeviceOS::ANDROID, DeviceOS::IOS]);
-
-            var_dump($os);
             $this->spoofed = !$desktop && $user->desktop;
         } elseif($e->equals(Packets::MOVE)) {
             if($this->spoofed) {

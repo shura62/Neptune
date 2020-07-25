@@ -35,7 +35,7 @@ class SpeedB extends Check implements Cancellable {
         $diff = abs($dist - $prediction);
         $scaledDist = $diff * 100;
         
-        $max = 14.5 + (PlayerUtils::getPotionEffectLevel($e->getPlayer(), Effect::SPEED) * 0.2);
+        $max = 15.5 + (PlayerUtils::getPotionEffectLevel($e->getPlayer(), Effect::SPEED) * 0.2);
 
         if ($scaledDist > $max
                 && $user->airTicks > 4
