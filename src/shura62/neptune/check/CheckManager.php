@@ -20,6 +20,7 @@ use shura62\neptune\check\movement\fly\FlyC;
 use shura62\neptune\check\movement\fly\FlyD;
 use shura62\neptune\check\movement\fly\FlyE;
 use shura62\neptune\check\movement\invalid\InvalidA;
+use shura62\neptune\check\movement\jesus\JesusA;
 use shura62\neptune\check\movement\motion\MotionA;
 use shura62\neptune\check\movement\motion\MotionB;
 use shura62\neptune\check\movement\noslow\NoSlowA;
@@ -59,6 +60,7 @@ class CheckManager {
             new MotionB(),
             new NoSlowA(),
             new NoSlowB(),
+            new JesusA(),
             new ScaffoldA(),
             new ScaffoldB(),
             new SprintA(),

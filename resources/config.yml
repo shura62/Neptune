@@ -99,6 +99,11 @@ checks:
         enabled: true
         punishable: false
         max-vl: 10
+    jesus:
+      horizontal:
+        enabled: true
+        punishable: true
+        max-vl: 10
     invalid:
       pitch:
         enabled: true
