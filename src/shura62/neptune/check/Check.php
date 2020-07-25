@@ -63,7 +63,7 @@ abstract class Check {
     }
 
     public abstract function onPacket(PacketReceiveEvent $e, User $user);
-
+    
     public function getName() : string{
         return $this->name;
     }
@@ -78,6 +78,10 @@ abstract class Check {
 
     public function isEnabled() : bool{
         return $this->enabled;
+    }
+    
+    public function canRunBeforeLogin() : bool{
+        return false;
     }
 
 }

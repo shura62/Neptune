@@ -24,13 +24,19 @@ class SpoofA extends Check {
             $data = $e->getPacket()->clientData;
             $os = $data['DeviceOS'] ?? DeviceOS::UNKNOWN;
 
-            $desktop = !in_array($os, [DeviceOS::ANDROID, DeviceOS::IOS]);
+            $desktop = !in_array((int) $os, [DeviceOS::ANDROID, DeviceOS::IOS]);
 
+            var_dump($os);
             $this->spoofed = !$desktop && $user->desktop;
         } elseif($e->equals(Packets::MOVE)) {
-            if($this->spoofed)
+            if($this->spoofed) {
                 $this->flag($user, "edition faked= " . ($this->spoofed ? "true" : "false"));
+            }
         }
     }
 
+    public function canRunBeforeLogin() : bool{
+        return true;
+    }
+    
 }

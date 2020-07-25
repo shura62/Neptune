@@ -32,7 +32,7 @@ class DeviceProcessor extends Processor {
         } catch (\Exception $e) {
             $id = -1;
         }
-        $user->desktop = !in_array(base64_encode((string) $id), ["MTczOTk0NzQzNg==", "MTgxMDkyNDI0Nw=="]);
+        $user->desktop = !in_array($id, [1739947436, 1810924247]);
     }
 
 }

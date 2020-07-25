@@ -18,7 +18,7 @@ class User {
     public $boundingBox;
     public $position, $lastPosition, $lastGroundPosition;
     public $velocity, $lastVelocity;
-    public $clientGround, $collidedGround, $alerts, $inventoryOpen, $digging, $desktop, $sprinting;
+    public $online, $clientGround, $collidedGround, $alerts, $inventoryOpen, $digging, $desktop, $sprinting;
     public $movementProcessor, $packetProcessor, $deviceProcessor;
     public $flagDelay, $airTicks, $groundTicks, $iceTicks, $slimeTicks, $liquidTicks, $climbableTicks, $cobwebTicks, $blocksAboveTicks, $sprintingTicks;
     public $lastTeleport, $lastKnockBack, $lastBlockPlace, $lastMoveFlag;

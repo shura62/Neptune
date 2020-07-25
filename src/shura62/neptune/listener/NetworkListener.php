@@ -13,10 +13,13 @@ use shura62\neptune\user\UserManager;
 
 class NetworkListener implements Listener {
 
+    private $exemptedPlayers;
+    
     public function __construct() {
         NeptunePlugin::getInstance()->getServer()->getPluginManager()->registerEvents($this, NeptunePlugin::getInstance());
+        $this->exemptedPlayers = NeptunePlugin::getInstance()->getConfig()->getNested("exempted-players");
     }
-
+    
     public function onPacket(DataPacketReceiveEvent $event) : void{
         $player = $event->getPlayer();
         $packet = $event->getPacket();
@@ -26,14 +29,17 @@ class NetworkListener implements Listener {
                 $user->movementProcessor->process($packet);
                 $user->packetProcessor->process($packet);
 
-                $exempted = NeptunePlugin::getInstance()->getConfig()->getNested("exempted-players");
+                $exempted = $this->exemptedPlayers;
 
-                if($user->position !== null
-                        && !in_array($user->getPlayer()->getName(), $exempted)
-                        && $user->lastTeleport->hasPassed(100)) {
+                if(!in_array($user->getPlayer()->getName(), $exempted)) {
                     foreach($user->checks->get() as $check) {
-                        if($check->isEnabled())
+                        if($check->isEnabled()) {
+                            if (!$check->canRunBeforeLogin()
+                                    && ($user->lastTeleport->hasNotPassed(100) || $user->position === null)) {
+                                continue;
+                            }
                             $check->onPacket(new PacketReceiveEvent($player, $packet), $user);
+                        }
                     }
                     $user->movementProcessor->postProcess($packet);
                 }
