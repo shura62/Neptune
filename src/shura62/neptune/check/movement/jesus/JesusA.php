@@ -30,7 +30,8 @@ class JesusA extends Check {
         $stationary = $deltaX % 1 == 0 && $deltaZ % 1 == 0;
        
         if (abs($deltaY) > 0 && !$onGround && $stationary
-                && !$user->getPlayer()->getAllowFlight()) {
+                && !$user->getPlayer()->getAllowFlight()
+                && $user->lastKnockBack->hasPassed(60)) {
             // Check for depth strider
             $depthStrider = $user->getPlayer()
                 ->getArmorInventory()

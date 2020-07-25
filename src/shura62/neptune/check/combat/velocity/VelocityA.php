@@ -4,48 +4,103 @@ declare(strict_types=1);
 
 namespace shura62\neptune\check\combat\velocity;
 
-use pocketmine\event\entity\EntityMotionEvent;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\Listener;
+use pocketmine\math\Vector3;
+use pocketmine\Player;
 use shura62\neptune\check\Check;
 use shura62\neptune\check\CheckType;
 use shura62\neptune\event\PacketReceiveEvent;
 use shura62\neptune\NeptunePlugin;
 use shura62\neptune\user\User;
+use shura62\neptune\user\UserManager;
 use shura62\neptune\utils\packet\Packets;
-use shura62\neptune\utils\Timestamp;
 
 class VelocityA extends Check implements Listener {
 
-    private $entity;
-    private $velY, $lastVelocity;
-
+    /** @var Vector3[] */
+    private $velocities = [];
+    private $user;
+    
+    private $minVertical;
+    private $minHorizontal;
+    private $maxTicks = 0;
+    
     public function __construct() {
-        parent::__construct("Velocity", "Vertical", CheckType::COMBAT);
-        //NeptunePlugin::getInstance()->getServer()->getPluginManager()->registerEvents($this, NeptunePlugin::getInstance());
+        parent::__construct("Velocity", "Reducer", CheckType::COMBAT);
+        NeptunePlugin::getInstance()->getServer()->getPluginManager()->registerEvents($this, NeptunePlugin::getInstance());
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {
-        /*if(!$e->equals(Packets::MOVE))
+        if ($e->equals(Packets::MOVE)) {
+            $this->user = $user;
+            
+            $vel = $user->velocity;
+            $timestamp = $user->lastKnockBack;
+            
+            $maxTicks = $this->maxTicks;
+            // Parse
+            if ($timestamp !== null && $timestamp->hasNotPassed($maxTicks + 1)) {
+                $this->velocities[] = $vel;
+            } else {
+                // Analyze
+                if ($timestamp->hasNotPassed($maxTicks + 2)) {
+                    if (count($this->velocities) == 0) {
+                        return;
+                    }
+    
+                    $verticals = [];
+                    $horizontals = [];
+                    foreach ($this->velocities as $vector) {
+                        $verticals[] = $vector->getY();
+                        $horizontals[] = hypot($vector->getX(), $vector->getZ());
+                    }
+    
+                    $vertical = min($verticals);
+                    $horizontal = min($horizontals);
+                    
+                    $this->velocities = [];
+                }
+            }
+        }
+    }
+    
+    /**
+     * @priority HIGHEST
+     * @param EntityDamageByEntityEvent $event
+     */
+    public function onAttack(EntityDamageByEntityEvent $event) : void{
+        $victim = $event->getEntity();
+        $damager = $event->getDamager();
+        if (!($victim instanceof Player)) {
             return;
-        if($this->entity === $user->getPlayer()
-                && $this->lastVelocity->hasNotPassed(1)
-                && $user->velocity->getY() <= $this->velY * 0.99
-                //&& $user->blocksAboveTicks <= 0
-                && $user->liquidTicks <= 0
-                && $user->cobwebTicks <= 0) {
-            $user->getPlayer()->sendMessage("vel= " . $this->velY . "; user= " . $user->velocity->y );
-            if(++$this->vl > 0)
-                $this->flag($user, "vertical= " . $this->velY);
-        } else $this->vl = 0;*/
+        }
+        $user = UserManager::get($victim);
+        
+        if ($user === $this->user) {
+            $base = $event->getKnockBack();
+            
+            $diffX = $victim->getX() - $damager->getX();
+            $diffZ = $victim->getZ() - $damager->getZ();
+            $multiplier = 1 / hypot($diffX, $diffZ);
+            
+            $this->maxTicks = (int) ceil($victim->getPing() / 50) + 8;
+            $velocity = $user->velocity;
+            
+            // We start from the maximum values
+            $minVertical = $velocity->getY() / 2 + $base;
+            $maxX = ($velocity->getX() / 2) + $diffX * $multiplier * $base;
+            $maxZ = ($velocity->getZ() / 2) + $diffZ * $multiplier * $base;
+            $minHorizontal = hypot($maxX, $maxZ);
+            // Now we calculate the minimum vertical/horizontal velocity
+            // We also use minecraft formulas to predict with reasonable accuracy the next velocity
+            for ($i = $minVertical, $j = $minHorizontal; $i + $j < $this->maxTicks * 2; $minVertical = ($minVertical - 0.08) * 0.98, $minHorizontal *= 0.91, ++$i, ++$j) {
+            }
+            
+            // Parse the values
+            $this->minHorizontal = $minHorizontal;
+            $this->minVertical = $minVertical;
+        }
     }
-
-    public function onVelocity(EntityMotionEvent $event) : void{
-        $this->velY = $event->getVector()->getY();
-        $this->entity = $event->getEntity();
-
-        if($this->lastVelocity !== null) {
-            $this->lastVelocity->reset();
-        } else $this->lastVelocity = new Timestamp();
-    }
-
+    
 }

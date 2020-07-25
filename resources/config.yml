@@ -173,8 +173,8 @@ checks:
         punishable: false
         max-vl: 10
     velocity:
-      vertical:
-        enabled: true
+      reducer:
+        enabled: false
         punishable: true
         max-vl: 10
     range:
