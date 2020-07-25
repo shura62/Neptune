@@ -40,7 +40,7 @@ class SpeedE extends Check {
             $differentY = abs($user->position->getY() - $user->lastPosition->getY()) > 0;
             
             // Player changed Y-axis coordinate being on ground both ticks.
-            // He apparently teleported between to positions.
+            // He apparently teleported between two positions.
             $flag = $this->lastOnGround && $onGround && $user->position->getY() && $differentY;
             
             if (hypot($deltaX, $deltaZ) > $maxSpeed || $flag) {
