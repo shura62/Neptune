@@ -42,7 +42,7 @@ checks:
         enabled: true
         punishable: true
         max-vl: 10
-      collisions:
+      hand:
         enabled: true
         punishable: true
         max-vl: 10

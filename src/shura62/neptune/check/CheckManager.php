@@ -49,6 +49,7 @@ class CheckManager {
             new SpeedB(),
             new SpeedC(),
             new SpeedD(),
+            new SpeedE(),
             new FlyA(),
             new FlyB(),
             new FlyC(),

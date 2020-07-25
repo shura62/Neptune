@@ -24,7 +24,7 @@ class SpeedC extends Check implements Cancellable {
         $dist = hypot($user->velocity->getX(), $user->velocity->getZ());
         $lastDist = hypot($user->lastVelocity->getX(), $user->lastVelocity->getZ());
 
-        $diff = $dist - $lastDist;
+        $diff = abs($dist - $lastDist);
 
         if ($diff == 0)
             return;
