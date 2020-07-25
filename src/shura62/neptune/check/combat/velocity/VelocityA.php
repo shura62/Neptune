@@ -16,6 +16,8 @@ use shura62\neptune\user\User;
 use shura62\neptune\user\UserManager;
 use shura62\neptune\utils\packet\Packets;
 
+// Credits to senpayeh for helping
+
 class VelocityA extends Check implements Listener {
 
     /** @var Vector3[] */
@@ -59,6 +61,15 @@ class VelocityA extends Check implements Listener {
                     $vertical = min($verticals);
                     $horizontal = min($horizontals);
                     
+                    $diffX = abs($horizontal - $this->minHorizontal);
+                    $diffY = abs($vertical - $this->minVertical);
+                    
+                    if ($diffX >= 0.2 || $diffY <= 0.1) {
+                        if(++$this->vl > 2 || $diffX >= 0.22) {
+                            $this->flag($user, "diffX= " . $diffX . ", diffY= " . $diffY);
+                        }
+                    } else $this->vl = 0;
+                    
                     $this->velocities = [];
                 }
             }
@@ -84,7 +95,7 @@ class VelocityA extends Check implements Listener {
             $diffZ = $victim->getZ() - $damager->getZ();
             $multiplier = 1 / hypot($diffX, $diffZ);
             
-            $this->maxTicks = (int) ceil($victim->getPing() / 50) + 8;
+            $this->maxTicks = (int) ceil($victim->getPing() / 50) + 4;
             $velocity = $user->velocity;
             
             // We start from the maximum values
@@ -94,7 +105,7 @@ class VelocityA extends Check implements Listener {
             $minHorizontal = hypot($maxX, $maxZ);
             // Now we calculate the minimum vertical/horizontal velocity
             // We also use minecraft formulas to predict with reasonable accuracy the next velocity
-            for ($i = $minVertical, $j = $minHorizontal; $i + $j < $this->maxTicks * 2; $minVertical = ($minVertical - 0.08) * 0.98, $minHorizontal *= 0.91, ++$i, ++$j) {
+            for ($i = 0; $i <= $this->maxTicks; $minVertical = ($minVertical - 0.08) * 0.98, $minHorizontal *= 0.91, ++$i) {
             }
             
             // Parse the values

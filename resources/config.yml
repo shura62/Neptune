@@ -174,9 +174,9 @@ checks:
         max-vl: 10
     velocity:
       reducer:
-        enabled: false
+        enabled: true
         punishable: true
-        max-vl: 10
+        max-vl: 20
     range:
       hitbox:
         enabled: true
