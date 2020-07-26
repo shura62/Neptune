@@ -6,7 +6,6 @@ namespace shura62\neptune\processing\types;
 
 use pocketmine\network\mcpe\protocol\AnimatePacket;
 use pocketmine\network\mcpe\protocol\DataPacket;
-use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
 use shura62\neptune\processing\Processor;
 use shura62\neptune\user\User;
 use shura62\neptune\utils\packet\types\WrappedAnimatePacket;
@@ -21,12 +20,12 @@ class ClickProcessor extends Processor {
     }
     
     public function process(DataPacket $packet) : void{
-        if (!($packet instanceof LevelSoundEventPacket)) {
+        if (!($packet instanceof AnimatePacket)) {
             return;
         }
         
         $user = $this->user;
-        $valid = !$user->digging && $packet->sound == LevelSoundEventPacket::SOUND_ATTACK_NODAMAGE; //&& (new W($packet))->swung;
+        $valid = !$user->digging && (new WrappedAnimatePacket($packet))->swung;
         
         if (!$valid) {
             return;
