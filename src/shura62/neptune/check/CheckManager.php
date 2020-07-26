@@ -18,6 +18,7 @@ use shura62\neptune\check\combat\range\RangeA;
 use shura62\neptune\check\combat\noswing\NoSwingA;
 use shura62\neptune\check\combat\rotation\RotationA;
 use shura62\neptune\check\combat\velocity\VelocityA;
+use shura62\neptune\check\combat\criticals\CriticalsA;
 use shura62\neptune\check\movement\fastladder\FastLadderA;
 use shura62\neptune\check\movement\fly\FlyA;
 use shura62\neptune\check\movement\fly\FlyB;
@@ -89,6 +90,7 @@ class CheckManager {
             new RotationA(),
             new VelocityA(),
             new RangeA(),
+            new CriticalsA(),
         ];
     }
 

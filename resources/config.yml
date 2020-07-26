@@ -202,4 +202,9 @@ checks:
         enabled: true
         punishable: true
         max-vl: 10
+    criticals:
+      packet:
+        enabled: true
+        punishable: true
+        max-vl: 10
 ...
