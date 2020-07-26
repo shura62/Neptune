@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace shura62\neptune\check\combat\autoclicker;
 
+use pocketmine\math\Vector3;
 use shura62\neptune\check\Check;
 use shura62\neptune\check\CheckType;
 use shura62\neptune\event\PacketReceiveEvent;
@@ -26,9 +27,10 @@ class AutoclickerA extends Check {
         if($e->equals(Packets::ANIMATE)) {
             $pk = new WrappedAnimatePacket($e->getPacket());
 
-            if ($pk->swung) {
-                if (!$user->digging)
+            if ($pk->swung && $user->cps > 10) {
+                if (!$user->digging) {
                     $this->hits[] = $this->ticks * 50;
+                }
                 if(count($this->hits) >= 10) {
                     $deviation = MathUtils::getStandardDeviation($this->hits);
                     $lastDeviation = $this->lastDeviation;

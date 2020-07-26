@@ -158,7 +158,27 @@ checks:
         enabled: true
         punishable: true
         max-vl: 10
-      delay:
+      outliers:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      statistic:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      statisticb:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      tick:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      duplicates:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      limit:
         enabled: true
         punishable: true
         max-vl: 10

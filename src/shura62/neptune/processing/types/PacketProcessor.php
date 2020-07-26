@@ -47,6 +47,11 @@ class PacketProcessor extends Processor {
                         break;
                 }
                 break;
+            case ProtocolInfo::NETWORK_STACK_LATENCY_PACKET:
+                $timestamp = $packet->timestamp;
+                
+                $user->ping = (microtime(true) / 1000) - $timestamp;
+                break;
         }
     }
 

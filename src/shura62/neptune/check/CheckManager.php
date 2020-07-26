@@ -9,6 +9,11 @@ use shura62\neptune\check\combat\aura\AuraA;
 use shura62\neptune\check\combat\aura\AuraB;
 use shura62\neptune\check\combat\autoclicker\AutoclickerA;
 use shura62\neptune\check\combat\autoclicker\AutoclickerB;
+use shura62\neptune\check\combat\autoclicker\AutoclickerC;
+use shura62\neptune\check\combat\autoclicker\AutoclickerD;
+use shura62\neptune\check\combat\autoclicker\AutoclickerE;
+use shura62\neptune\check\combat\autoclicker\AutoclickerF;
+use shura62\neptune\check\combat\autoclicker\AutoclickerG;
 use shura62\neptune\check\combat\range\RangeA;
 use shura62\neptune\check\combat\noswing\NoSwingA;
 use shura62\neptune\check\combat\rotation\RotationA;
@@ -74,7 +79,12 @@ class CheckManager {
             new AuraA(),
             new AuraB(),
             new AutoclickerA(),
-            new AutoclickerB(),
+            //new AutoclickerB(),
+            //new AutoclickerC(),
+            //new AutoclickerD(),
+            //new AutoclickerE(),
+            //new AutoclickerF(),
+            //new AutoclickerG(),
             new NoSwingA(),
             new RotationA(),
             new VelocityA(),

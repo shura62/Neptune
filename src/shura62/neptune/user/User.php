@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace shura62\neptune\user;
 
+use pocketmine\network\mcpe\protocol\NetworkStackLatencyPacket;
 use pocketmine\Player;
+use pocketmine\scheduler\ClosureTask;
 use shura62\neptune\check\CheckManager;
+use shura62\neptune\NeptunePlugin;
+use shura62\neptune\processing\types\ClickProcessor;
 use shura62\neptune\processing\types\DeviceProcessor;
 use shura62\neptune\processing\types\MovementProcessor;
 use shura62\neptune\processing\types\PacketProcessor;
@@ -19,8 +23,9 @@ class User {
     public $position, $lastPosition, $lastGroundPosition;
     public $velocity, $lastVelocity;
     public $online, $clientGround, $collidedGround, $alerts, $inventoryOpen, $digging, $desktop, $sprinting;
-    public $movementProcessor, $packetProcessor, $deviceProcessor;
+    public $movementProcessor, $packetProcessor, $deviceProcessor, $clickProcessor;
     public $flagDelay, $airTicks, $groundTicks, $iceTicks, $slimeTicks, $liquidTicks, $climbableTicks, $cobwebTicks, $blocksAboveTicks, $sprintingTicks;
+    public $cps, $ping;
     public $lastTeleport, $lastKnockBack, $lastBlockPlace, $lastMoveFlag;
     public $checks = [];
 
@@ -30,6 +35,7 @@ class User {
         $this->movementProcessor = new MovementProcessor($this);
         $this->packetProcessor = new PacketProcessor($this);
         $this->deviceProcessor = new DeviceProcessor($this);
+        $this->clickProcessor = new ClickProcessor($this);
 
         $this->flagDelay = 1;
 
@@ -38,6 +44,16 @@ class User {
         $this->lastTeleport = new Timestamp();
         $this->lastKnockBack = new Timestamp();
         $this->lastBlockPlace = new Timestamp();
+        
+        /*NeptunePlugin::getInstance()->getScheduler()->scheduleRepeatingTask(new ClosureTask(function (int $currentTick) use ($player) : void{
+            if ($player->isOnline()) {
+                $packet = new NetworkStackLatencyPacket();
+                $packet->needResponse = true;
+                $packet->timestamp = microtime(true) / 1000;
+    
+                $player->directDataPacket($packet);
+            }
+        }), 1);*/
     }
 
     public function getPlayer() : Player{

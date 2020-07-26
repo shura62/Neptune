@@ -65,7 +65,7 @@ class RangeA extends Check implements Listener {
                 }
                 $distance = min($collided);
                 
-                if ($distance > 3) {
+                if ($distance >= 3.01) {
                     if (++$this->vl > 3) {
                         $this->flag($user, "dist= " . $distance);
                     }

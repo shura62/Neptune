@@ -28,7 +28,8 @@ class NetworkListener implements Listener {
             if($user !== null) {
                 $user->movementProcessor->process($packet);
                 $user->packetProcessor->process($packet);
-
+                $user->clickProcessor->process($packet);
+                
                 $exempted = $this->exemptedPlayers;
 
                 if(!in_array($user->getPlayer()->getName(), $exempted)) {
