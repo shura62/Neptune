@@ -27,6 +27,7 @@ class ConnectionListener implements Listener {
      */
     public function onLogin(DataPacketReceiveEvent $event) : void{
         $packet = $event->getPacket();
+        
         if($packet instanceof LoginPacket) {
             $user = new User($event->getPlayer());
             UserManager::register($user);

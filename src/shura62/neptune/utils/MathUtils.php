@@ -11,22 +11,23 @@ class MathUtils {
     public static function gcd(int $a, int $b) : float{
         return (float) gmp_strval(gmp_gcd((string) $a, (string) $b));
     }
-
+    
     public static function getDirection(float $yaw, float $pitch) : Vector3{
-        $y = -sin(deg2rad($pitch));
-        $xz = cos(deg2rad($pitch));
-        $x = -$xz * sin(deg2rad($yaw));
-        $z = $xz * cos(deg2rad($yaw));
-        return new Vector3($x, $y, $z);
+        $v = new Vector3();
+        $rotX = deg2rad($yaw);
+        $rotY = deg2rad($pitch);
+        
+        $v->y = -sin($rotY);
+        $xz = cos($rotY);
+        $v->x = -$xz * sin($rotX);
+        $v->z = $xz * cos($rotX);
+        
+        return $v;
     }
 
     public static function angle(Vector3 $a, Vector3 $b) : float{
-        try {
-            $dot = min(max($a->dot($b) / ($a->length() * $b->length()), -1), 1);
-            return acos($dot);
-        } catch (\Exception $e) {
-            return 0;
-        }
+        $dot = min(max($a->dot($b) / ($a->length() * $b->length()), -1), 1);
+        return acos($dot);
     }
 
     public static function getDirectionFromVectors(Vector3 $a, Vector3 $b) : float{

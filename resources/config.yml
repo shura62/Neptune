@@ -109,6 +109,14 @@ checks:
         enabled: true
         punishable: true
         max-vl: 10
+      sneak:
+        enabled: true
+        punishable: true
+        max-vl: 10
+      sprint:
+        enabled: true
+        punishable: true
+        max-vl: 10
     sprint:
       omni:
         enabled: true

@@ -11,6 +11,7 @@ use shura62\neptune\check\CheckManager;
 use shura62\neptune\NeptunePlugin;
 use shura62\neptune\processing\types\ClickProcessor;
 use shura62\neptune\processing\types\DeviceProcessor;
+use shura62\neptune\processing\types\KeyProcessor;
 use shura62\neptune\processing\types\MovementProcessor;
 use shura62\neptune\processing\types\PacketProcessor;
 use shura62\neptune\utils\Timestamp;
@@ -23,7 +24,7 @@ class User {
     public $position, $lastPosition, $lastGroundPosition;
     public $velocity, $lastVelocity;
     public $online, $clientGround, $collidedGround, $alerts, $inventoryOpen, $digging, $desktop, $sprinting;
-    public $movementProcessor, $packetProcessor, $deviceProcessor, $clickProcessor;
+    public $movementProcessor, $packetProcessor, $deviceProcessor, $clickProcessor, $keyProcessor;
     public $flagDelay, $airTicks, $groundTicks, $iceTicks, $slimeTicks, $liquidTicks, $climbableTicks, $cobwebTicks, $blocksAboveTicks, $sprintingTicks;
     public $cps, $ping;
     public $lastTeleport, $lastKnockBack, $lastBlockPlace, $lastMoveFlag;
@@ -36,6 +37,7 @@ class User {
         $this->packetProcessor = new PacketProcessor($this);
         $this->deviceProcessor = new DeviceProcessor($this);
         $this->clickProcessor = new ClickProcessor($this);
+        $this->keyProcessor = new KeyProcessor($this);
 
         $this->flagDelay = 1;
 
