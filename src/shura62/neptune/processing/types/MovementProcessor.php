@@ -72,7 +72,7 @@ class MovementProcessor extends Processor {
                 return $b->getId() === Block::COBWEB;
             })) > 0 ? 1 : -$user->cobwebTicks;
             // Blocks above
-            $user->blocksAboveTicks += count($user->boundingBox->add(0,0, 0, 0, 2)
+            $user->blocksAboveTicks += count($user->boundingBox->add(0,0, 0, 0, 2.5)
                 ->getCollidingBlocks($user->getPlayer()->getLevel())) > 0
                 ? 1 : -$user->blocksAboveTicks;
         } else {

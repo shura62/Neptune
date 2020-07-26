@@ -17,7 +17,7 @@ class MathUtils {
         $xz = cos(deg2rad($pitch));
         $x = -$xz * sin(deg2rad($yaw));
         $z = $xz * cos(deg2rad($yaw));
-        new Vector3($x, $y, $z);
+        return new Vector3($x, $y, $z);
     }
 
     public static function angle(Vector3 $a, Vector3 $b) : float{

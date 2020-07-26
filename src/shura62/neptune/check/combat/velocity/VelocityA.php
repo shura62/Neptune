@@ -64,7 +64,13 @@ class VelocityA extends Check implements Listener {
                     $diffX = abs($horizontal - $this->minHorizontal);
                     $diffY = abs($vertical - $this->minVertical);
                     
-                    if (($diffX >= 0.2 || $diffY <= 0.1) && $user->blocksAboveTicks < 1) {
+                    $blocksAbove = $user->position->getLevel()->getBlockAt(
+                        (int)floor($user->position->getX()),
+                        (int)floor($user->boundingBox->getMax()->getY() + 1),
+                        (int)floor($user->position->getZ()))
+                            ->isSolid();
+                    
+                    if (($diffX >= 0.2 || $diffY <= 0.1) && !$blocksAbove) {
                         if(++$this->vl > 2 || $diffX >= 0.22) {
                             $this->flag($user, "diffX= " . $diffX . ", diffY= " . $diffY);
                         }

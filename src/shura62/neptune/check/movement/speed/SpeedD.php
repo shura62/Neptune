@@ -31,11 +31,12 @@ class SpeedD extends Check implements Cancellable {
 
         if(($accel > 0.29 && $lastAccel <= 0) || ($accel <= 0 && $lastAccel > 0.29)
                 && ($user->lastMoveFlag === null || $user->lastMoveFlag->hasPassed(1))
-                && $user->lastKnockBack->hasPassed(25)
+                && $user->lastKnockBack->hasPassed(40)
                 && !$user->getPlayer()->getAllowFlight()) {
-            if(++$this->vl > 2)
+            if(++$this->vl > 2) {
                 $this->flag($user, "accel= " . $accel . ", lastAccel= " . $lastAccel);
-        }
+            }
+        } else $this->vl = 0;
     }
 
 }

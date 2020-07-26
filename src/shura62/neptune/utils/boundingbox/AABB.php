@@ -10,14 +10,14 @@ use shura62\neptune\user\User;
 
 class AABB {
 
-    private $minX, $minY, $minZ;
-    private $maxX, $maxY, $maxZ;
+    public $minX, $minY, $minZ;
+    public $maxX, $maxY, $maxZ;
 
     public static function fromUser(User $user) : AABB{
         $pos = $user->position;
         return new AABB(
-            $pos->x - 0.3, $pos->y, $pos->z - 0.3,
-            $pos->x + 0.3, $pos->y + 1.8, $pos->z + 0.3
+            $pos->x - 0.4, $pos->y, $pos->z - 0.4,
+            $pos->x + 0.4, $pos->y + 1.8, $pos->z + 0.4
         );
     }
     

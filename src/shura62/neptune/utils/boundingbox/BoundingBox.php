@@ -26,7 +26,7 @@ class BoundingBox {
     public function add(float $minX = 0, float $minY = 0, float $minZ = 0, float $maxX = 0, float $maxY = 0, float $maxZ = 0) : BoundingBox{
         return new BoundingBox(
             new Vector3($this->min->getX() + $minX, $this->min->getY() + $minY, $this->min->getZ() + $minZ),
-            new Vector3($this->max->getX() + $minX, $this->max->getY() + $minY, $this->max->getZ() + $minZ));
+            new Vector3($this->max->getX() + $maxX, $this->max->getY() + $maxY, $this->max->getZ() + $maxZ));
     }
 
     public function subtract(float $minX = 0, float $minY = 0, float $minZ = 0, float $maxX = 0, float $maxY = 0, float $maxZ = 0) : BoundingBox{
