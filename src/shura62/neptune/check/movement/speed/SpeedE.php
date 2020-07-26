@@ -37,13 +37,14 @@ class SpeedE extends Check {
         $sneaking = $user->getPlayer()->isSneaking();
         
         if ($sneaking && $this->lastWasMove && !$user->getPlayer()->getAllowFlight()) {
-            $differentY = abs($user->position->getY() - $user->lastPosition->getY()) > 0;
+            $differentY = abs($user->position->getY() - $user->lastPosition->getY()) > 2;
+            $horizontalSpeed = hypot($deltaX, $deltaZ);
             
             // Player changed Y-axis coordinate being on ground both ticks.
             // He apparently teleported between two positions.
-            $flag = $this->lastOnGround && $onGround && $user->position->getY() && $differentY;
+            $flag = $this->lastOnGround && $onGround && $user->position->getY() && $differentY && $horizontalSpeed > 0.2;
             
-            if (hypot($deltaX, $deltaZ) > $maxSpeed || $flag) {
+            if ($horizontalSpeed > $maxSpeed && $maxSpeed > 0 || $flag) {
                 $this->flag($user);
             }
         }

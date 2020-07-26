@@ -18,7 +18,6 @@ class TimerA extends Check {
 
     public function __construct() {
         parent::__construct("Timer", "Consistency", CheckType::PLAYER);
-        $this->dev = true;
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {
