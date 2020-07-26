@@ -30,8 +30,8 @@ class AngleA extends Check {
             $vec = $entity->subtract(0, $entity->getY())->subtract($player->subtract(0, $player->getY()));
 
             $angle = MathUtils::angle($player->getDirectionVector(), $vec);
-            if($angle > 1.135 && hypot($vec->abs()->getX(), $vec->abs()->getZ()) > 1 && $user->position->pitch <= 70) {
-                if(++$this->vl > 3.1)
+            if($angle > 1.9 && hypot($vec->abs()->getX(), $vec->abs()->getZ()) > 1 && $user->position->pitch <= 70) {
+                if(++$this->vl > 3)
                     $this->flag($user, "angle= " . $angle);
             } else $this->vl = 0;
         }
