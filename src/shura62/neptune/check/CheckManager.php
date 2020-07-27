@@ -33,6 +33,7 @@ use shura62\neptune\check\movement\motion\MotionA;
 use shura62\neptune\check\movement\motion\MotionB;
 use shura62\neptune\check\movement\noslow\NoSlowA;
 use shura62\neptune\check\movement\noslow\NoSlowB;
+use shura62\neptune\check\movement\noslow\NoSlowC;
 use shura62\neptune\check\movement\scaffold\ScaffoldA;
 use shura62\neptune\check\movement\scaffold\ScaffoldB;
 use shura62\neptune\check\movement\speed\SpeedA;
@@ -70,6 +71,7 @@ class CheckManager {
             new MotionB(),
             new NoSlowA(),
             new NoSlowB(),
+            new NoSlowC(),
             new JesusA(),
             new ScaffoldA(),
             new ScaffoldB(),

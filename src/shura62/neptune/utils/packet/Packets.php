@@ -15,5 +15,6 @@ interface Packets {
     const LOGIN = ProtocolInfo::LOGIN_PACKET;
     const INTERACT = ProtocolInfo::INTERACT_PACKET;
     const NETWORK_STACK_LATENCY = ProtocolInfo::NETWORK_STACK_LATENCY_PACKET;
+    const ACTOR_EVENT = ProtocolInfo::ACTOR_EVENT_PACKET;
 
 }

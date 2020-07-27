@@ -90,6 +90,10 @@ checks:
         enabled: true
         punishable: true
         max-vl: 10
+      food:
+        enabled: true
+        punishable: true
+        max-vl: 10
     scaffold:
       delay:
         enabled: true
