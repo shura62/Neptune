@@ -3,7 +3,7 @@
 Neptune is a **work-in-progress** anticheat with many checks designed to patch various cheats/hacks. The goal of this project is to provide a free anticheat solution for servers that automatically punishes any player that uses any form of cheat.
 #### SUPPORT  
 Project is open-sourced and therefore all support will be handled on issues page.\
-A discord server will be soon provided.
+You can also contact me on Discord: shura62#8896
 #### FEATURES
 Neptune detections are constantly tested and updated. We want to make sure that your legit playerbase is not affected while still actively punishing cheaters.\
 \
