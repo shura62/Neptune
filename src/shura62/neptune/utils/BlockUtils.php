@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace shura62\neptune\utils;
 
 use pocketmine\block\Block;
+use pocketmine\level\particle\FlameParticle;
+use shura62\neptune\utils\world\types\SimpleCollisionBox;
 
 class BlockUtils {
 

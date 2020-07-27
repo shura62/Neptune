@@ -30,7 +30,7 @@ class NoFallA extends Check {
         $client = $user->clientGround;
         $server = $user->collidedGround;
 
-        if($client !== $server
+        if($client && !$server
                 && $user->liquidTicks <= 0
                 && $user->climbableTicks <= 0
                 && $user->cobwebTicks <= 0

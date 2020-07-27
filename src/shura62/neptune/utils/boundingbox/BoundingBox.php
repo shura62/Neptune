@@ -91,7 +91,7 @@ class BoundingBox {
             for ($z = $minZ; $z <= $maxZ; ++$z) {
                 for ($x = $minX; $x <= $maxX; ++$x) {
                     $block = $level->getBlockAt($x, (int) floor($height), $z);
-                    $box = BoundingBox::from($block->getBoundingBox());
+                    $box = BoundingBox::from($block->getBoundingBox() ?? new AxisAlignedBB(0,0,0,0,0,0));
                     if($this->collides($box))
                         $blocksAround[] = $block;
                 }

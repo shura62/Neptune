@@ -83,5 +83,9 @@ abstract class Check {
     public function canRunBeforeLogin() : bool{
         return false;
     }
+    
+    public function canRunAfterTeleport() : bool{
+        return false;
+    }
 
 }

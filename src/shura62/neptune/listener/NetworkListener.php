@@ -36,8 +36,8 @@ class NetworkListener implements Listener {
                 if(!in_array($user->getPlayer()->getName(), $exempted)) {
                     foreach($user->checks->get() as $check) {
                         if($check->isEnabled()) {
-                            if (!$check->canRunBeforeLogin()
-                                    && ($user->lastTeleport->hasNotPassed(100) || $user->position === null)) {
+                            if ((!$check->canRunBeforeLogin() && $user->position === null)
+                                    || ($user->lastTeleport->hasNotPassed(100) && !$check->canRunAfterTeleport())) {
                                 continue;
                             }
                             $check->onPacket(new PacketReceiveEvent($player, $packet), $user);

@@ -104,6 +104,11 @@ checks:
         enabled: true
         punishable: true
         max-vl: 10
+    phase:
+      collisions:
+        enabled: true
+        punishable: true
+        max-vl: 10
     invalid:
       pitch:
         enabled: true
