@@ -13,6 +13,8 @@ use pocketmine\utils\TextFormat;
 use shura62\neptune\command\argument\AlertsArgument;
 use shura62\neptune\command\argument\Argument;
 use shura62\neptune\command\argument\DelayArgument;
+use shura62\neptune\command\argument\DisableArgument;
+use shura62\neptune\command\argument\EnableArgument;
 use shura62\neptune\NeptunePlugin;
 use shura62\neptune\user\UserManager;
 use shura62\neptune\utils\ChatUtils;
@@ -26,6 +28,8 @@ class NeptuneCommand extends Command implements PluginIdentifiableCommand {
 
         $this->registerArgument(new AlertsArgument(), "alerts");
         $this->registerArgument(new DelayArgument(), "delay");
+        $this->registerArgument(new EnableArgument(), "enable");
+        $this->registerArgument(new DisableArgument(), "disable");
 
         $this->setPermission('neptune.view-command');
     }

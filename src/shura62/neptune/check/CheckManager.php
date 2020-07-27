@@ -49,6 +49,7 @@ use shura62\neptune\check\player\timer\TimerA;
 
 class CheckManager {
 
+    /** @var Check[] */
     private $checks;
 
     public function __construct() {

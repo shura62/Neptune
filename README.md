@@ -16,5 +16,7 @@ Limitations:
 #### COMMANDS
 * ```/neptune alerts``` - Toggle alerts from the anticheat
 * ```/neptune delay <delay>``` - Receive alerts within a specific delay
+* ```/neptune enable <checkName> <checkType>``` - Enable the specified check
+* ```/neptune disable <checkName> <checkType>``` - Disable the specified check
 #### CONFIGURATION
 Neptune provides 100% configurable detections. You can enable/disable a specific check, set a maximum violations threshold for them and allow the check to punish players when reached that limit.

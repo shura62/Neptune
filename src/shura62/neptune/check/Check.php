@@ -87,5 +87,9 @@ abstract class Check {
     public function canRunAfterTeleport() : bool{
         return false;
     }
+    
+    public function setEnabled(bool $enable) : void{
+        $this->enabled = $enable;
+    }
 
 }
