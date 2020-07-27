@@ -25,10 +25,8 @@ class InvalidC extends Check {
                 && $user->keyProcessor->isNotPressing(KeyProcessor::W, KeyProcessor::S);
            
             if ($sprinting && $flag) {
-                if (++$this->vl > 1) {
-                    $this->flag($user);
-                }
-            } else $this->vl = 0;
+                $this->flag($user);
+            }
         }
     }
     
