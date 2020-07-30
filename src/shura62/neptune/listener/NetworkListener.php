@@ -39,7 +39,7 @@ class NetworkListener implements Listener {
                 
                 if(!in_array($player->getName(), $exempted)
                         && $player->getServer()->getTicksPerSecond() >= 19
-                        && $player->getY() <= -1) {
+                        && $player->getY() >= 0) {
                     foreach($user->checks->get() as $check) {
                         if($check->isEnabled()) {
                            if ($user->lastTeleport !== null && $user->lastTeleport->hasNotPassed(100) && !$check->canRunAfterTeleport()) {
