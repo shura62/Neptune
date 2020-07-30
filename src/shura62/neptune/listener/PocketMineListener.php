@@ -45,7 +45,12 @@ class PocketMineListener implements Listener {
             if ($mode === MovePlayerPacket::MODE_TELEPORT) {
                 $user = UserManager::get($event->getPlayer());
                 if ($user !== null && ($user->lastMoveFlag === null || $user->lastMoveFlag->hasNotPassed(1))) {
-                    $user->lastTeleport->reset();
+                    $lastTeleport = $user->lastTeleport;
+                    if ($lastTeleport !== null) {
+                        $lastTeleport->reset();
+                    } else {
+                        $user->lastTeleport = new Timestamp();
+                    }
                 }
             }
         }
