@@ -24,9 +24,18 @@ class InvalidC extends Check {
             $flag = $user->keyProcessor->isPressing(1, KeyProcessor::A, KeyProcessor::D)
                 && $user->keyProcessor->isNotPressing(KeyProcessor::W, KeyProcessor::S);
            
-            if ($sprinting && $flag) {
-                $this->flag($user);
+            if (!$sprinting) {
+                return;
             }
+            
+            if ($flag
+                    && $user->lastKnockBack->hasPassed(20)
+                    && $user->climbableTicks == 0
+                    && $user->liquidTicks == 0) {
+                if (++$this->vl > 1) {
+                    $this->flag($user);
+                }
+            } else $this->vl = 0;
         }
     }
     

@@ -6,10 +6,12 @@ namespace shura62\neptune\processing\types;
 
 use pocketmine\network\mcpe\protocol\DataPacket;
 use pocketmine\network\mcpe\protocol\InteractPacket;
+use pocketmine\network\mcpe\protocol\InventoryTransactionPacket;
 use pocketmine\network\mcpe\protocol\PlayerActionPacket;
 use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use shura62\neptune\processing\Processor;
 use shura62\neptune\user\User;
+use shura62\neptune\utils\Timestamp;
 
 class PacketProcessor extends Processor {
 
@@ -45,6 +47,17 @@ class PacketProcessor extends Processor {
                     case PlayerActionPacket::ACTION_STOP_SPRINT:
                         $user->sprinting = false;
                         break;
+                }
+                break;
+            case ProtocolInfo::INVENTORY_TRANSACTION_PACKET:
+                $place = $packet->transactionType === InventoryTransactionPacket::TYPE_USE_ITEM;
+                if ($place) {
+                    $timestamp = $user->lastTeleport;
+                    if ($timestamp !== null) {
+                        $timestamp->reset();
+                    } else {
+                        $user->lastTeleport = new Timestamp();
+                    }
                 }
                 break;
             case ProtocolInfo::NETWORK_STACK_LATENCY_PACKET:

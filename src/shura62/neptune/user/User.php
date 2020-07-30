@@ -23,7 +23,7 @@ class User {
     public $boundingBox;
     public $position, $lastPosition, $lastGroundPosition;
     public $velocity, $lastVelocity;
-    public $online, $clientGround, $collidedGround, $alerts, $inventoryOpen, $digging, $desktop, $sprinting;
+    public $online, $clientGround, $collidedGround, $alerts, $inventoryOpen, $digging, $desktop, $clientDesktop, $sprinting;
     public $movementProcessor, $packetProcessor, $deviceProcessor, $clickProcessor, $keyProcessor;
     public $flagDelay, $airTicks, $groundTicks, $iceTicks, $slimeTicks, $liquidTicks, $climbableTicks, $cobwebTicks, $blocksAboveTicks, $sprintingTicks;
     public $cps, $ping;
@@ -43,7 +43,7 @@ class User {
 
         $this->checks = new CheckManager();
 
-        $this->lastTeleport = new Timestamp();
+        //$this->lastTeleport = new Timestamp();
         $this->lastKnockBack = new Timestamp();
         $this->lastBlockPlace = new Timestamp();
         

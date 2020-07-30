@@ -20,6 +20,10 @@ class NetworkListener implements Listener {
         $this->exemptedPlayers = NeptunePlugin::getInstance()->getConfig()->getNested("exempted-players");
     }
     
+    /**
+     * @priority HIGHEST
+     * @param DataPacketReceiveEvent $event
+     */
     public function onPacket(DataPacketReceiveEvent $event) : void{
         $player = $event->getPlayer();
         $packet = $event->getPacket();
@@ -32,14 +36,15 @@ class NetworkListener implements Listener {
                 $user->keyProcessor->process($packet);
                 
                 $exempted = $this->exemptedPlayers;
-
-                if(!in_array($user->getPlayer()->getName(), $exempted)) {
+                
+                if(!in_array($player->getName(), $exempted)
+                        && $player->getServer()->getTicksPerSecond() >= 19
+                        && $player->getY() > 1) {
                     foreach($user->checks->get() as $check) {
                         if($check->isEnabled()) {
-                            if ((!$check->canRunBeforeLogin() && $user->position === null)
-                                    || ($user->lastTeleport->hasNotPassed(100) && !$check->canRunAfterTeleport())) {
-                                continue;
-                            }
+                           if ($user->lastTeleport !== null && $user->lastTeleport->hasNotPassed(100) && !$check->canRunAfterTeleport()) {
+                               continue;
+                           }
                             $check->onPacket(new PacketReceiveEvent($player, $packet), $user);
                         }
                     }

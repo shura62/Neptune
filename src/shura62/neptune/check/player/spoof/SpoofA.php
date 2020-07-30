@@ -20,20 +20,18 @@ class SpoofA extends Check {
     }
 
     public function onPacket(PacketReceiveEvent $e, User $user) {
-        if($e->equals(Packets::LOGIN)) {
-            $data = $e->getPacket()->clientData;
-            $os = $data['DeviceOS'] ?? DeviceOS::UNKNOWN;
-            
-            $desktop = !in_array((int) $os, [DeviceOS::ANDROID, DeviceOS::IOS]);
-            $this->spoofed = !$desktop && $user->desktop;
-        } elseif($e->equals(Packets::MOVE)) {
-            if($this->spoofed) {
+        if($e->equals(Packets::MOVE)) {
+            if(!$user->clientDesktop && $user->desktop) {
                 $this->flag($user, "edition faked= " . ($this->spoofed ? "true" : "false"));
             }
         }
     }
 
     public function canRunBeforeLogin() : bool{
+        return true;
+    }
+    
+    public function canRunAfterTeleport() : bool{
         return true;
     }
     

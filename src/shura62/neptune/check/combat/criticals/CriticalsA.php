@@ -23,7 +23,7 @@ class CriticalsA extends Check {
             $entity = $pk->entity;
             
             if ($entity !== null) {
-                if (!$user->clientGround && $user->collidedGround) {
+                if (!$user->clientGround && $user->collidedGround && !$user->getPlayer()->getAllowFlight()) {
                     if (++$this->vl > 2) {
                         $this->flag($user);
                     }

@@ -22,7 +22,7 @@ class ConnectionListener implements Listener {
     }
     
     /**
-     * @priority LOW
+     * @priority LOWEST
      * @param DataPacketReceiveEvent $event
      */
     public function onLogin(DataPacketReceiveEvent $event) : void{

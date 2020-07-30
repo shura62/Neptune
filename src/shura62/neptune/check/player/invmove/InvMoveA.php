@@ -28,7 +28,7 @@ class InvMoveA extends Check {
                 && $user->lastKnockBack->hasPassed(40)
                 && $user->groundTicks > 4
                 && $deltaXZ > 0.1) {
-            if(++$this->vl > 2)
+            if(++$this->vl > 10)
                 $this->flag($user, "deltaXZ= " . $deltaXZ);
         } else $this->vl = 0;
     }

@@ -65,7 +65,9 @@ class RangeA extends Check implements Listener {
                 }
                 $distance = min($collided);
                 
-                if ($distance >= 3.01) {
+                $threshold = $user->getPlayer()->getGamemode() === Player::SURVIVAL ? 3.01 : 5;
+                
+                if ($distance >= $threshold) {
                     if (++$this->vl > 3) {
                         $this->flag($user, "dist= " . $distance);
                     }

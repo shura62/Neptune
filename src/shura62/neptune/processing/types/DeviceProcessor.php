@@ -6,6 +6,7 @@ namespace shura62\neptune\processing\types;
 
 use pocketmine\network\mcpe\protocol\DataPacket;
 use pocketmine\network\mcpe\protocol\LoginPacket;
+use pocketmine\network\mcpe\protocol\types\DeviceOS;
 use shura62\neptune\processing\Processor;
 use shura62\neptune\user\User;
 
@@ -32,6 +33,11 @@ class DeviceProcessor extends Processor {
         } catch (\Exception $e) {
             $id = -1;
         }
+        
+        $clientData = $packet->clientData;
+        $os = isset($clientData['DeviceOS']) ? $clientData['DeviceOS'] : 0;
+        
+        $user->clientDesktop = !in_array($os, [DeviceOS::ANDROID, DeviceOS::IOS]);
         $user->desktop = !in_array($id, [1739947436, 1810924247]);
     }
 

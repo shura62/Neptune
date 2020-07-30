@@ -15,7 +15,7 @@ permissions:
         default: op
       neptune.alerts:
         description: Receive an alert when a player fails a check
-        default: op
+        default: true
       neptune.delay:
         description: Set a delay for alerts
         default: op
