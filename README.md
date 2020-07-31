@@ -1,6 +1,10 @@
 # Neptune (Anticheat)
 #### OVERVIEW
 Neptune is a **work-in-progress** anticheat with many checks designed to patch various cheats/hacks. The goal of this project is to provide a free anticheat solution for servers that automatically punishes any player that uses any form of cheat.
+### TEST SERVER
+You can test the anticheat yourself joining the official test server:\
+IP Address: ```144.76.30.62```\
+Port: ```26440```
 #### SUPPORT  
 Project is open-sourced and therefore all support will be handled on issues page.\
 You can also contact me on Discord: shura62#8896
