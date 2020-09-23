@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b2b80e7f-5d6c-456c-a593-c378aae6b566" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/../.." />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1hH0MtmnbrcVJIQrhOyUI7Z7eR2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Francesco\Desktop\PocketTests\plugins\Neptune\src\shura62\neptune\check\combat" />
+      <recent name="C:\Users\Francesco\Desktop\PocketTests\plugins\Neptune\src\shura62\neptune\check\movement" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.Test.php">
+    <configuration name="Test.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Neptune/PocketTests/plugins/Neptune/src/shura62/neptune/Test.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="Test.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/src/shura62/neptune/Test.php">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.Test.php" />
+        <item itemvalue="PHP Script.Test.php" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b2b80e7f-5d6c-456c-a593-c378aae6b566" name="Default Changelist" comment="" />
+      <created>1599652665508</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599652665508</updated>
+      <workItem from="1599652666748" duration="19090000" />
+      <workItem from="1599745886168" duration="6035000" />
+      <workItem from="1599926402652" duration="526000" />
+      <workItem from="1600018259277" duration="15305000" />
+      <workItem from="1600081635632" duration="26060000" />
+      <workItem from="1600177099244" duration="779000" />
+      <workItem from="1600546544622" duration="13773000" />
+      <workItem from="1600606232925" duration="25718000" />
+      <workItem from="1600684724403" duration="9467000" />
+      <workItem from="1600715884737" duration="10176000" />
+      <workItem from="1600772155657" duration="590000" />
+      <workItem from="1600773742180" duration="6754000" />
+      <workItem from="1600858938065" duration="1537000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="390" y="7" key="#PHP" timestamp="1599652833926">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="390" y="7" key="#PHP/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1599652833926" />
+    <state x="452" y="166" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599665498238">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="452" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1599665498238" />
+    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1599661319759">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1599661319759" />
+    <state x="516" y="139" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600617702284">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="516" y="139" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1600617702284" />
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600724758524">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1600724758524" />
+    <state x="462" y="119" key="FileChooserDialogImpl" timestamp="1600177891071">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="462" y="119" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1600177891071" />
+    <state x="309" y="87" key="NewPhpClassDialog" timestamp="1599749492410">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="309" y="87" key="NewPhpClassDialog/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1599749492410" />
+    <state x="184" y="9" key="SettingsEditor" timestamp="1599746728146">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="9" key="SettingsEditor/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1599746728146" />
+    <state x="390" y="0" width="585" height="728" key="find.popup" timestamp="1600111174658">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="390" y="0" width="585" height="728" key="find.popup/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1600111174658" />
+    <state x="65" y="0" key="new project wizard" timestamp="1599926939335">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="65" y="0" key="new project wizard/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1599926939335" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1600638511751">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1600638511751" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1600723699367">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1600723699367" />
+  </component>
+</project>
